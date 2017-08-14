@@ -10,6 +10,8 @@ const defaultProps = {
    onLogin: (id, pw) => { console.error("login function not defined"); },
    onRegister: (id, pw) => { console.error("register function not defined"); }
 };
+
+
 class LoginForm extends Component {
   constructor(props) {
       super(props);
@@ -18,7 +20,23 @@ class LoginForm extends Component {
           password: ""
       };
       this.handleChange = this.handleChange.bind(this);
+      this.handleLogin = this.handleLogin.bind(this);
   }
+
+  handleLogin() {
+       let id = this.state.login_id;
+       let pw = this.state.password;
+
+       this.props.onLogin(id, pw).then(
+           (success) => {
+               if(!success) {
+                   this.setState({
+                       password: ''
+                   });
+               }
+           }
+       );
+   }
 
   handleChange(e) {
       let nextState = {};
@@ -48,7 +66,8 @@ class LoginForm extends Component {
                  onChange={this.handleChange}
                  value={this.state.username}/>
              </div>
-             <a className="waves-effect waves-light btn pink">SUBMIT</a>
+             <button className="col s12 btn waves-effect waves-light red lighten-3"
+             onClick={this.handleLogin}>로그인 </button>
          </div>
      </div>)
 

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { NavLink } from 'react-router-dom';
-
+import NavContent  from './NavContent';
 const propTypes = {
   isLoggedIn: React.PropTypes.bool,
    onLogout: React.PropTypes.func
@@ -34,17 +34,23 @@ class Header extends Component {
 
               );
 
+
+
+            let islogined = true;
         return(
-          <nav>
+          <nav className="nav-extended">
+
               <div className="nav-wrapper">
-                  <NavLink to="/" className="brand-logo" activeClassName="active">Tripple</NavLink>
+                  <NavLink to="/" className="brand-logo marginL" activeClassName="active">Tripple</NavLink>
+
                   <div className="right">
                       <ul>
-
                           { this.props.isLoggedIn ? logoutButton : loginButton }
                       </ul>
                   </div>
               </div>
+              {islogined ? <NavContent/> : undefined}
+
           </nav>
         );
     }

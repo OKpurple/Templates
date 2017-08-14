@@ -4,6 +4,22 @@
   margin-top: 50px;
     text-align: center;
 }
+.marginL{
+  margin-left: 20px;
+}
+.search {
+  margin-top: 120px;
+
+}
+.marginB{
+  margin-bottom: 40px;
+}
+
+.cardContainer{
+  padding-top : 100px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
 
 .logo {
     text-align: center;
@@ -26,6 +42,12 @@ a.logo {
 a {
     cursor: pointer;
 }
+
+li {
+  text-align: center;
+}
+
+
 
 .auth .card {
     width: 400px;
