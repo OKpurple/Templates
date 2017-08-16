@@ -25,10 +25,28 @@ class SerachForm extends Component {
       this.props.onSearch();
     }
 
+    componentDidMount(){
+      const script = document.createElement('script');
+      script.text = `function initAutocomplete() {
+          // 메인페이지에서 지도 검색시 도시까지만 출력되도록
+          var options = {
+              types: ['(cities)']
+          };
+          var inputGoogleMap = document.getElementById('searchPlace');
+          var searchbox = new google.maps.places.Autocomplete(inputGoogleMap, options);
+      }`
+
+      const script1 = document.createElement('script');
+      script1.src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5PIOp7E83jz9-EtbthhehmGKL9AAWeNU&libraries=places&callback=initAutocomplete"
+      script1.async = true;
+      this.instance.appendChild(script);
+      this.instance.appendChild(script1);
+    }
+
     render() {
 
         return(
-          <div className="container search">
+          <div className="container search" ref={el => (this.instance = el)}>
           <h2 className="marginB">어디로 갈래요?</h2>
           <div className="row">
             <div className="col s5">

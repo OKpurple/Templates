@@ -23,6 +23,7 @@ class LoginForm extends Component {
       this.handleLogin = this.handleLogin.bind(this);
   }
 
+
   handleLogin() {
        let id = this.state.login_id;
        let pw = this.state.password;
@@ -37,6 +38,8 @@ class LoginForm extends Component {
            }
        );
    }
+
+
 
   handleChange(e) {
       let nextState = {};

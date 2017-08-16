@@ -11,8 +11,7 @@ class Login extends React.Component {
       }
 
   handleLogin(id, pw) {
-          return this.props.loginRequest(id, pw).then(
-              () => {
+          return this.props.loginRequest(id, pw).then(() => {
                   if(this.props.status === "SUCCESS") {
                       // create session data
                       let loginData = {
@@ -37,7 +36,6 @@ class Login extends React.Component {
 
 
     render() {
-
         return (
           <LoginForm mode = {true}
           onLogin={this.handleLogin}/>

@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Header } from '../components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import {Login, Home, Register,SearchResult} from '../containers'
+import {Login, Home, Register,SearchResult,CreateProgram,
+  CreateMeetPlace,CreateDetail,CreatePDetail,Program} from '../containers'
 class App extends Component {
   constructor(props){
     super(props);
@@ -13,13 +14,20 @@ class App extends Component {
         return (
           <Router>
              <div>
+
                 {isAuth ? undefined : <Header/>}
+
                  <div>
                      <Switch>
                          <Route exact path="/" component={Home}/>
                          <Route path="/Login" component={Login}/>
                          <Route path="/Register" component={Register}/>
                          <Route path="/SearchResult" component={SearchResult}/>
+                         <Route path="/CreateProgram" component={CreateProgram}/>
+                         <Route path="/CreateMeetPlace" component={CreateMeetPlace}/>
+                         <Route path="/CreateDetail" component={CreateDetail}/>
+                         <Route path="/CreatePDetail" component={CreatePDetail}/>
+                         <Route path="/Program" component={Program}/>
                      </Switch>
                  </div>
              </div>

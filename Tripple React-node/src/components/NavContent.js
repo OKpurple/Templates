@@ -14,16 +14,10 @@ class NavContent extends Component {
             <div className="nav-content">
               <div className="tabs tabs-transparent">
 
-                <div className="tab red right">
-                  <select className="tab right">
-                    <option>option1</option>
-                    <option>option2</option>
-                  </select>
-                </div>
-
+              
                 <NavLink to = "/" className="tab right"><a>내 프로그램</a></NavLink>
-                <NavLink to = "/" className="tab right"><a>신청 현황</a></NavLink>
-                <NavLink to = "/" className="tab right"><a>가이드 등록</a></NavLink>
+                <NavLink to = "/" className="tab right"><a>여행</a></NavLink>
+                <NavLink to = "/CreateProgram" className="tab right"><a>프로그램 만들기</a></NavLink>
 
               </div>
             </div>
