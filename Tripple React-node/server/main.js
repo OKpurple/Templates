@@ -3,6 +3,7 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
+import session from 'express-session';
 
 
 const app = express();
@@ -11,6 +12,12 @@ const devPort = 4000;
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({limit: '10mb', extended: false, parameterLimit: 100000}));
+
+app.use(session({
+    secret: 'CodeLab1$1$234',
+    resave: false,
+    saveUninitialized: true
+}));
 
 app.use('/', express.static(path.join(__dirname, './../public')));
 

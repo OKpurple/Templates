@@ -1,12 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { NavLink } from 'react-router-dom';
 const propTypes = {
-  mode: React.PropTypes.bool,
    onLogin: React.PropTypes.func,
-   onRegister: React.PropTypes.func
 };
 const defaultProps = {
-  mode: true,
    onLogin: (id, pw) => { console.error("login function not defined"); },
    onRegister: (id, pw) => { console.error("register function not defined"); }
 };
@@ -30,7 +27,8 @@ class LoginForm extends Component {
 
        this.props.onLogin(id, pw).then(
            (success) => {
-               if(!success) {
+             console.log('loginform success');
+               if(!success){
                    this.setState({
                        password: ''
                    });
@@ -67,7 +65,7 @@ class LoginForm extends Component {
                  type="password"
                  className="validate"
                  onChange={this.handleChange}
-                 value={this.state.username}/>
+                 value={this.state.password}/>
              </div>
              <button className="col s12 btn waves-effect waves-light red lighten-3"
              onClick={this.handleLogin}>로그인 </button>

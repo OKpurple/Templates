@@ -51,7 +51,10 @@ router.get('/:user_id',(req,res)=>{
         user_id
       ]
     ).then((result)=>{
-
+      conn.release();
+      res.json(toRes(SUCCESS,{
+        data : result
+      }))
     });
   });
 });

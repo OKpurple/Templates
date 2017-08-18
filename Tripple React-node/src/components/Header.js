@@ -12,7 +12,10 @@ const defaultProps = {
 class Header extends Component {
     constructor(props) {
         super(props);
+        // { this.props.isloggedIn ? <NavContent/> : undefined }
     }
+
+  
     render() {
 
             const loginButton = (
@@ -26,14 +29,13 @@ class Header extends Component {
               const logoutButton = (
 
                   <li>
-                      <a>
+                       <a onClick={this.props.onLogout}>
                           <i className="material-icons">lock_open</i>
                       </a>
                   </li>
 
 
               );
-
 
 
             let islogined = true;
@@ -49,7 +51,9 @@ class Header extends Component {
                       </ul>
                   </div>
               </div>
-              {islogined ? <NavContent/> : undefined}
+              { this.props.isLoggedIn ?  <NavContent/> : undefined }
+
+
 
           </nav>
         );

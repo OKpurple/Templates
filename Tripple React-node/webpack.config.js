@@ -1,5 +1,5 @@
 module.exports = {
-    entry:   entry: [
+    entry: [
         './src/index.js',
         './src/style.css'
     ],

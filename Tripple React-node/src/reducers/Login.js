@@ -11,9 +11,8 @@ const initialState = {
     }
 };
 
-export default function Login(state, action) {
-    if(typeof state === "undefined")
-        state = initialState;
+export default function Login(state = initialState, action) {
+
 
     switch(action.type) {
         /* LOGIN */
@@ -39,6 +38,14 @@ export default function Login(state, action) {
                     status: { $set: 'FAILURE' }
                 }
             });
+        case types.AUTH_LOGOUT:
+            return update(state, {
+                status: {
+                  isLoggedIn: { $set: false },
+                  currentUser: { $set: '' }
+                }
+             });
+
         default:
             return state;
     }

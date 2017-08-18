@@ -20,6 +20,10 @@ var _webpackDevServer = require('webpack-dev-server');
 
 var _webpackDevServer2 = _interopRequireDefault(_webpackDevServer);
 
+var _expressSession = require('express-session');
+
+var _expressSession2 = _interopRequireDefault(_expressSession);
+
 var _routes = require('./routes');
 
 var _routes2 = _interopRequireDefault(_routes);
@@ -32,6 +36,12 @@ var devPort = 4000;
 
 app.use(_bodyParser2.default.json()); // support json encoded bodies
 app.use(_bodyParser2.default.urlencoded({ limit: '10mb', extended: false, parameterLimit: 100000 }));
+
+app.use((0, _expressSession2.default)({
+    secret: 'CodeLab1$1$234',
+    resave: false,
+    saveUninitialized: true
+}));
 
 app.use('/', _express2.default.static(_path2.default.join(__dirname, './../public')));
 

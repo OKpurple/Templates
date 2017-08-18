@@ -18,13 +18,16 @@ class Login extends React.Component {
                           isLoggedIn: true,
                           login_id: id
                       };
-
+                      console.log('logincontainer success')
+                      //쿠키로 키 등록
                       document.cookie = 'key=' + btoa(JSON.stringify(loginData));
 
                       Materialize.toast('Welcome, ' + id + '!', 2000);
+
                       this.props.history.push('/');
                       return true;
                   } else {
+                    console.log('logincontainer fail')
                       let $toastContent = $('<span style="color: #FFB4BA">Incorrect username or password</span>');
                       Materialize.toast($toastContent, 2000);
                       return false;
@@ -37,15 +40,14 @@ class Login extends React.Component {
 
     render() {
         return (
-          <LoginForm mode = {true}
-          onLogin={this.handleLogin}/>
+          <LoginForm onLogin={this.handleLogin}/>
         );
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        status: state.Login.login.status
+        status: state.Login.login.status //status.리듀서네임.속성속성
     };
 };
 

@@ -10,6 +10,10 @@ var _express2 = _interopRequireDefault(_express);
 
 var _utils = require('../utils');
 
+var _expressSession = require('express-session');
+
+var _expressSession2 = _interopRequireDefault(_expressSession);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = _express2.default.Router();
@@ -35,10 +39,11 @@ router.post('/signup', function (req, res) {
 
 router.post('/signin', function (req, res) {
   var login_id = req.body.login_id;
-  var password = req.body.login_id;
+  var password = req.body.password;
 
   (0, _utils.dbConnect)(res).then(function (conn) {
     (0, _utils.query)(conn, res, 'SELECT * FROM users WHERE login_id =? AND password =?', [login_id, password]).then(function (result) {
+      console.log(login_id + "," + password + " 결과는? " + result.length);
       conn.release();
       if (result.length === 0) {
         res.json(_utils.INVALID_REQUEST);
@@ -65,4 +70,12 @@ router.get('/info/:user_id', function (req, res) {
     });
   });
 });
+
+router.post('/logout', function (req, res) {
+  req.session.destroy(function (err) {
+    if (err) throw err;
+  });
+  return res.json({ sucess: true });
+});
+
 exports.default = router;

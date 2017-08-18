@@ -39,7 +39,12 @@ router.get('/:user_id', function (req, res) {
   var user_id = req.params.user_id;
 
   (0, _utils.dbConnect)(res).then(function (conn) {
-    (0, _utils.query)(conn, res, 'SELECT * FROM programs WHERE user_id =?', [user_id]).then(function (result) {});
+    (0, _utils.query)(conn, res, 'SELECT * FROM programs WHERE user_id =?', [user_id]).then(function (result) {
+      conn.release();
+      res.json((0, _utils.toRes)(_utils.SUCCESS, {
+        data: result
+      }));
+    });
   });
 });
 

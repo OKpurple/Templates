@@ -10,18 +10,18 @@ class NavContent extends Component {
     }
     render() {
         return(
-          <div>
+
             <div className="nav-content">
               <div className="tabs tabs-transparent">
 
-              
+
                 <NavLink to = "/" className="tab right"><a>내 프로그램</a></NavLink>
                 <NavLink to = "/" className="tab right"><a>여행</a></NavLink>
                 <NavLink to = "/CreateProgram" className="tab right"><a>프로그램 만들기</a></NavLink>
 
               </div>
             </div>
-          </div>
+
         );
     }
 }

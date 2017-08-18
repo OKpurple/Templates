@@ -100,7 +100,9 @@ class GoogleMap extends Component {
         return(
           <div ref={el => (this.instance = el)} className='col s6'>
 
-              <input id='pac-input' type='text' placeholder='Search Box'/>
+              <input id='pac-input'
+               type='text'
+               placeholder='Search Box'/>
               <div id='map' ></div>
 
           </div>

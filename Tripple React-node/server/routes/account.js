@@ -1,6 +1,6 @@
 import express from 'express';
 import { DB_ERROR, SUCCESS, INVALID_REQUEST, SERVER_ERROR,dbConnect,query,toRes} from '../utils';
-
+import session from 'express-session';
 const router = express.Router();
 
 router.post('/signup',(req,res)=>{
@@ -37,7 +37,7 @@ router.post('/signup',(req,res)=>{
 
 router.post('/signin',(req,res)=>{
   let login_id = req.body.login_id;
-  let password = req.body.login_id;
+  let password = req.body.password;
 
   dbConnect(res).then((conn)=>{
     query(conn,res,
@@ -47,6 +47,7 @@ router.post('/signin',(req,res)=>{
         password
       ]
     ).then((result)=>{
+      console.log(login_id + ","+password+" 결과는? "+result.length);
       conn.release();
       if(result.length === 0){
         res.json(INVALID_REQUEST);
@@ -79,4 +80,10 @@ router.get('/info/:user_id',(req,res)=>{
   });
 
 });
+
+router.post('/logout', (req, res) => {
+    req.session.destroy(err => { if(err) throw err; });
+    return res.json({ sucess: true });
+});
+
 export default router;
