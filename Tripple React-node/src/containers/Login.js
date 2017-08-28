@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoginForm } from '../components';
+import { LoginForm ,GuideCardItem} from '../components';
 import { Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginRequest } from '../actions/login';
@@ -40,7 +40,9 @@ class Login extends React.Component {
 
     render() {
         return (
-          <LoginForm onLogin={this.handleLogin}/>
+          <div>
+            <LoginForm onLogin={this.handleLogin}/>
+          </div>
         );
     }
 }

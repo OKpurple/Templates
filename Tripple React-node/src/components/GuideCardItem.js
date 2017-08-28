@@ -35,9 +35,7 @@ class GuideCardItem extends Component {
 
           <div className="row cardContainer">
             {CardItem}
-            {CardItem}
-            {CardItem}
-            {CardItem}
+        
             </div>
 
 

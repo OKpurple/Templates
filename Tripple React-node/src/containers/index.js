@@ -8,4 +8,5 @@ import CreateMeetPlace from './CreateMeetPlace';
 import CreateDetail from './CreateDetail';
 import CreatePDetail from './CreatePDetail';
 import Program from './Program';
-export { App, Home, Login, Register,SearchResult, CreateProgram,CreateMeetPlace,CreateDetail,CreatePDetail,Program };
+import TravelList from './TravelList';
+export { App, Home,TravelList, Login, Register,SearchResult, CreateProgram,CreateMeetPlace,CreateDetail,CreatePDetail,Program };
