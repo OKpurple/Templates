@@ -7,8 +7,8 @@ import session from 'express-session';
 
 
 const app = express();
-const port = 3000;
-const devPort = 4000;
+const port = 80;
+const devPort = 8080;
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({limit: '10mb', extended: false, parameterLimit: 100000}));

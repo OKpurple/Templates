@@ -26502,6 +26502,16 @@
 	  }
 
 	  _createClass(GoogleMap, [{
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      var allScripts = document.getElementsByTagName('script');
+	      [].filter.call(allScripts, function (scpt) {
+	        return scpt.src.indexOf('key=googleAPIKEY') >= 0;
+	      })[0].remove();
+
+	      window.google = {};
+	    }
+	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var script1 = document.createElement('script');

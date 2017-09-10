@@ -9,6 +9,7 @@ const db = mysql.createPool({
     host                 : dbConfig.host,
     port                 : dbConfig.port,
     user                 : dbConfig.user,
+       password             : dbConfig.password,
     database             : dbConfig.database,
     multipleStatements   : dbConfig.multipleStatements,
     connectionLimit      : dbConfig.connectionLimit,
@@ -21,14 +22,14 @@ const db = mysql.createPool({
 export const DB_ERROR = {
                             meta: {
                                 code: -11,
-                                message: "데이터베이스 오류"
+                                message: "?�이?�베?�스 ?�류"
                             }
                         };
 
 export const SERVER_ERROR = {
                             meta: {
                                 code: -12,
-                                message: "서버 오류"
+                                message: "?�버 ?�류"
                             }
                         };
 
@@ -42,7 +43,7 @@ export const SUCCESS = {
 export const INVALID_REQUEST =  {
                                     meta: {
                                         code: -10,
-                                        message: "잘못된 요청입니다."
+                                        message: "?�못???�청?�니??"
                                     }
                                 };
 

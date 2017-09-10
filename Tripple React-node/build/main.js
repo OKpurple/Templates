@@ -31,8 +31,8 @@ var _routes2 = _interopRequireDefault(_routes);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
-var port = 3000;
-var devPort = 4000;
+var port = 80;
+var devPort = 8080;
 
 app.use(_bodyParser2.default.json()); // support json encoded bodies
 app.use(_bodyParser2.default.urlencoded({ limit: '10mb', extended: false, parameterLimit: 100000 }));

@@ -28,6 +28,7 @@ var db = _mysql2.default.createPool({
     host: _dbConfig2.default.host,
     port: _dbConfig2.default.port,
     user: _dbConfig2.default.user,
+    password: _dbConfig2.default.password,
     database: _dbConfig2.default.database,
     multipleStatements: _dbConfig2.default.multipleStatements,
     connectionLimit: _dbConfig2.default.connectionLimit,
@@ -38,14 +39,14 @@ var db = _mysql2.default.createPool({
 var DB_ERROR = exports.DB_ERROR = {
     meta: {
         code: -11,
-        message: "데이터베이스 오류"
+        message: "?�이?�베?�스 ?�류"
     }
 };
 
 var SERVER_ERROR = exports.SERVER_ERROR = {
     meta: {
         code: -12,
-        message: "서버 오류"
+        message: "?�버 ?�류"
     }
 };
 
@@ -59,7 +60,7 @@ var SUCCESS = exports.SUCCESS = {
 var INVALID_REQUEST = exports.INVALID_REQUEST = {
     meta: {
         code: -10,
-        message: "잘못된 요청입니다."
+        message: "?�못???�청?�니??"
     }
 };
 
