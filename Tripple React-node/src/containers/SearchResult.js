@@ -16,10 +16,17 @@ class SearchResult extends Component {
     }
     render() {
         return(
-        <div>
-          <GuideCardItem/>
+          <div className="container ">
 
-        </div>
+            <div className="row">
+              <h3>도시, 일정 검색 결과</h3>
+
+              <GuideCardItem/>
+              <GuideCardItem/>
+
+            </div>
+
+          </div>
         );
     }
 }

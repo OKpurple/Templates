@@ -15,8 +15,27 @@ class Header extends Component {
         // { this.props.isloggedIn ? <NavContent/> : undefined }
     }
 
-  
+
     render() {
+
+
+            const registerButton = (
+                  <li>
+                      <a>
+                          <NavLink to = "/Register"><i className="material-icons">person_outline</i></NavLink>
+                      </a>
+                  </li>
+              );
+
+              const myPageButton = (
+                    <li>
+                        <a>
+                            <NavLink to = "/MyPage"><i className="material-icons">person_pin</i></NavLink>
+                        </a>
+                    </li>
+                );
+
+
 
             const loginButton = (
                   <li>
@@ -40,12 +59,25 @@ class Header extends Component {
 
             let islogined = true;
         return(
-          <nav className="nav-extended">
+
+          <nav className="nav-extended ">
+
 
               <div className="nav-wrapper">
                   <NavLink to="/" className="brand-logo marginL" activeClassName="active">Tripple</NavLink>
 
+
+
+                    <div className="right">
+
+                        <ul>
+
+                            { this.props.isLoggedIn ? myPageButton : registerButton }
+                        </ul>
+                    </div>
+
                   <div className="right">
+
                       <ul>
                           { this.props.isLoggedIn ? logoutButton : loginButton }
                       </ul>
@@ -56,6 +88,7 @@ class Header extends Component {
 
 
           </nav>
+
         );
     }
 }

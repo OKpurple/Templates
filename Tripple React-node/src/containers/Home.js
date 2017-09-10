@@ -33,9 +33,10 @@ class Home extends Component {
 
     render() {
         return(
+        <SearchForm
+          onSearch = {this.HandleSearch}/>
 
-            <SearchForm
-            onSearch = {this.HandleSearch}/>
+
 
         );
     }

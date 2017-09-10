@@ -28,7 +28,7 @@ class RoutePlan extends Component {
                 </tr>
               </tbody>
             </table>
-              
+
             </div>
         );
     }

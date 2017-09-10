@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Header } from '../components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {Login, Home, Register,SearchResult,CreateProgram,
-  CreateMeetPlace,CreateDetail,CreatePDetail,Program, TravelList} from '../containers'
+  CreateMeetPlace,CreateDetail,CreatePDetail,Program, TravelList, MyPage, MyTrip, Review, WishList} from '../containers';
 import {logoutRequest} from '../actions/login';
 import { connect } from 'react-redux';
 
@@ -54,22 +54,28 @@ class App extends Component {
                 {isAuth ? undefined : <Header isLoggedIn={this.props.status.isLoggedIn}
                                                   onLogout={this.handleLogout}/>}
 
-                 <div>
-                     <Switch>
-                         <Route exact path="/" component={Home}/>
-                         <Route path="/Login" component={Login}/>
-                         <Route path="/Register" component={Register}/>
-                         <Route path="/SearchResult/:city/:searchDate" component={SearchResult}/>
-                         <Route path="/SearchResult/:city/" component={SearchResult}/>
-                         <Route path="/SearchResult" component={SearchResult}/>
-                         <Route path="/CreateProgram" component={CreateProgram}/>
-                         <Route path="/CreateMeetPlace" component={CreateMeetPlace}/>
-                         <Route path="/CreateDetail" component={CreateDetail}/>
-                         <Route path="/CreatePDetail" component={CreatePDetail}/>
-                         <Route path="/Program" component={Program}/>
-                         <Route path="/TravelList" component={TravelList}/>
-                     </Switch>
-                 </div>
+                    <div >
+                      <Switch>
+                          <Route exact path="/" component={Home}/>
+                          <Route path="/Login" component={Login}/>
+                          <Route path="/Register" component={Register}/>
+                          <Route path="/SearchResult/:city/:searchDate" component={SearchResult}/>
+                          <Route path="/SearchResult/:city/" component={SearchResult}/>
+                          <Route path="/SearchResult" component={SearchResult}/>
+                          <Route path="/CreateProgram" component={CreateProgram}/>
+                          <Route path="/CreateMeetPlace" component={CreateMeetPlace}/>
+                          <Route path="/CreateDetail" component={CreateDetail}/>
+                          <Route path="/CreatePDetail" component={CreatePDetail}/>
+                          <Route path="/Program" component={Program}/>
+                          <Route path="/TravelList" component={TravelList}/>
+                          <Route path="/MyPage" component={MyPage}/>
+                          <Route path="/MyTrip" component={MyTrip}/>
+                          <Route path="/Review" component={Review}/>
+                          <Route path="/WishList" component={WishList}/>
+                      </Switch>
+                    </div>
+
+
              </div>
          </Router>
 

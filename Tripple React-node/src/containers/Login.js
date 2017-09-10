@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoginForm ,GuideCardItem} from '../components';
+import { LoginForm } from '../components';
 import { Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginRequest } from '../actions/login';
@@ -26,12 +26,15 @@ class Login extends React.Component {
 
                       this.props.history.push('/');
                       return true;
-                  } else {
+                    }
+
+                  else {
                     console.log('logincontainer fail')
                       let $toastContent = $('<span style="color: #FFB4BA">Incorrect username or password</span>');
                       Materialize.toast($toastContent, 2000);
                       return false;
                   }
+
               }
           );
       }
@@ -40,9 +43,7 @@ class Login extends React.Component {
 
     render() {
         return (
-          <div>
-            <LoginForm onLogin={this.handleLogin}/>
-          </div>
+          <LoginForm onLogin={this.handleLogin}/>
         );
     }
 }

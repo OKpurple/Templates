@@ -28,7 +28,7 @@ var db = _mysql2.default.createPool({
     host: _dbConfig2.default.host,
     port: _dbConfig2.default.port,
     user: _dbConfig2.default.user,
-    password: _dbConfig2.default.password,
+
     database: _dbConfig2.default.database,
     multipleStatements: _dbConfig2.default.multipleStatements,
     connectionLimit: _dbConfig2.default.connectionLimit,

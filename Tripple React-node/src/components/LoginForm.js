@@ -50,7 +50,7 @@ class LoginForm extends Component {
       const loginView = (<div className="card-content">
          <div className="row">
              <div className="input-field col s12 username">
-                 <label>Username</label>
+                 <label>Email</label>
                  <input
                  name="login_id"
                  type="text"
@@ -74,7 +74,7 @@ class LoginForm extends Component {
 
         return(
           <div className="container auth">
-             <NavLink className="logo" to="/">Tripple</NavLink>
+
              <div className="card">
                  <div className="header pink white-text center">
                      <div className="card-content">로그인</div>
