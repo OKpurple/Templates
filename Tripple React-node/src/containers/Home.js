@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { SearchForm } from '../components';
+import { SearchForm, GuideCardItem } from '../components';
+import {Carousel} from 'react-bootstrap';
+
 const propTypes = {
 };
 const defaultProps = {
@@ -32,10 +34,26 @@ class Home extends Component {
     }
 
     render() {
-        return(
-        <SearchForm
-          onSearch = {this.HandleSearch}/>
 
+
+        return(
+          <div>
+            <SearchForm
+              onSearch = {this.HandleSearch}/>
+
+            <div className="container" id="recommend_div">
+                <div className="row">
+                  <h3>추천 여행</h3>
+
+                </div>
+            </div>
+            <div className="container">
+                <div className="row">
+                  <h3>신규 여행</h3>
+                  
+                </div>
+            </div>
+          </div>
 
 
         );

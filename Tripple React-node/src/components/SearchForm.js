@@ -7,7 +7,7 @@ class SerachForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            city : "",
+            city : "undefined",
             searchDate: ""
         };
         this.handleChange = this.handleChange.bind(this);
@@ -22,7 +22,6 @@ class SerachForm extends Component {
     }
 
     handleSearch(){
-      console.log('searchform'+this.state.city,this.state.searchDate);
       this.props.onSearch(this.state.city,this.state.searchDate);
     }
 
@@ -38,8 +37,8 @@ class SerachForm extends Component {
                         var searchBox = new google.maps.places.Autocomplete(inputGoogleMap,options);
 
                         searchBox.addListener('place_changed', function(){
-                          inputGoogleMap.value = '꺼져'
-                          //searchBox.getPlace().formatted_address;
+                          inputGoogleMap.value =
+
 
                         });
                       }
@@ -50,7 +49,7 @@ class SerachForm extends Component {
       script1.src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5PIOp7E83jz9-EtbthhehmGKL9AAWeNU&libraries=places&callback=initAutocomplete"
       script1.async = true;
       this.instance.appendChild(script);
-      this.instance.appendChild(script1);
+      //this.instance.appendChild(script1);
     }
 
     render() {

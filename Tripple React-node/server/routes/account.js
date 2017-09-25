@@ -52,7 +52,12 @@ router.post('/signin',(req,res)=>{
       if(result.length === 0){
         res.json(INVALID_REQUEST);
       }else{
-        res.json(SUCCESS);
+        
+        res.json(toRes(SUCCESS,{
+          data : {
+            user_id : result[0].user_id
+          }
+        }));
       };
     });
   });

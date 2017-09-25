@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { GuideCardItem } from '../components'
 import { connect } from 'react-redux';
 import {
-    openProgramRequest
-} from '../actions/openProgram';
+    searchProgramListRequest
+} from '../actions/program';
 
 
 class SearchResult extends Component {
@@ -12,18 +12,28 @@ class SearchResult extends Component {
     }
 
     componentDidMount(){
-      console.log(this.props.match.params);
+      console.log("searchResult Start!")
+      let city = this.props.match.params.city;
+      let searchDate = this.props.match.params.searchDate;
+      this.props.searchProgramListRequest(city, searchDate).then(
+        ()=>{
+        console.log(this.props.searchProgramData);
+      }
+      )
     }
     render() {
+        const searchResultList = (data)=>{
+          return data.map((program,i)=>{
+            return <GuideCardItem data={program} key={i}/>
+          })
+        }
+
         return(
           <div className="container ">
 
             <div className="row">
               <h3>도시, 일정 검색 결과</h3>
-
-              <GuideCardItem/>
-              <GuideCardItem/>
-
+              {searchResultList(this.props.searchProgramData)}
             </div>
 
           </div>
@@ -32,22 +42,21 @@ class SearchResult extends Component {
 }
 
 
-//
-// const mapStateToProps = (state) => {
-//     return {
-//         status: state.Login.status,
-//         opData: state.OpenProgram.list.data
-//     };
-// };
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return{
-//     openProgramRequest:(city,meetingDate)=>{
-//       return dispatch(openProgramRequest(city, meetingDate));
-//     }
-//
-//   };
-// }
 
-//export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);
-export default SearchResult
+const mapStateToProps = (state) => {
+    return {
+
+        searchProgramData: state.Program.searchList.data
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    searchProgramListRequest: (city, meetingDate) => {
+      return dispatch(searchProgramListRequest(city, meetingDate));
+    }
+
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);

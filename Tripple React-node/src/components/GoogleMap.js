@@ -9,15 +9,14 @@ class GoogleMap extends Component {
         super(props);
     }
 
-    componentWillUnmount(){
-      const allScripts = document.getElementsByTagName( 'script' );
-[].filter.call(
-  allScripts,
-  ( scpt ) => scpt.src.indexOf( 'key=googleAPIKEY' ) >= 0
- )[ 0 ].remove();
-
- window.google = {};
-    }
+    // componentWillUnmount(){
+    //   const allScripts = document.getElementsByTagName( 'script' );
+    //   [].filter.call(
+    //     allScripts,
+    //     ( scpt ) => scpt.src.indexOf( 'key=googleAPIKEY' ) >= 0
+    //    )[ 0 ].remove();
+    //    window.google = {};
+    // }
 
     componentDidMount(){
        const script1 = document.createElement('script');
@@ -100,7 +99,7 @@ class GoogleMap extends Component {
 
 
       this.instance.appendChild(script1);
-      this.instance.appendChild(script);
+      //this.instance.appendChild(script);
 
     }
 

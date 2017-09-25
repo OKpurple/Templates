@@ -58,11 +58,12 @@ export function loginRequest(login_id, password) {
         return axios.post('/api/account/signin', { login_id, password })
         .then((response) => {
             // SUCCEED
+            
             if(response.data.meta.code === -10){
               console.log("INVALID_REQUEST");
             }else{
-              console.log("loginaction success");
-              dispatch(loginSuccess(login_id));
+              console.log("loginaction success"+response.data.data.user_id);
+              dispatch(loginSuccess(response.data.data.user_id));
             }
         }).catch((error) => {
             // FAILED

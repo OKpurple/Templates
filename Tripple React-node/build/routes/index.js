@@ -16,6 +16,10 @@ var _contents = require('./contents');
 
 var _contents2 = _interopRequireDefault(_contents);
 
+var _programs = require('./programs');
+
+var _programs2 = _interopRequireDefault(_programs);
+
 var _openPrograms = require('./openPrograms');
 
 var _openPrograms2 = _interopRequireDefault(_openPrograms);
@@ -27,5 +31,6 @@ var router = _express2.default.Router();
 router.use('/account', _account2.default);
 router.use('/contents', _contents2.default);
 router.use('/openPrograms', _openPrograms2.default);
+router.use('/programs', _programs2.default);
 
 exports.default = router;

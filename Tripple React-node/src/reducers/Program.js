@@ -10,6 +10,12 @@ const initialState = {
         status: 'INIT',
         data: [],
         isLast: false
+    },
+    applyList:{
+        data: []
+    },
+    searchList:{
+      data: []
     }
 };
 
@@ -20,29 +26,42 @@ export default function Program(state, action) {
     }
 
     switch(action.type) {
-        case types.PROGRAMS:
+        case types.PROGRAMS_LIST:
             return update(state, {
-                post: {
-                    status: { $set: 'WAITING' },
-                    error: { $set: -1 }
+                list: {
+                    status: { $set: 'WAITING' }
                 }
             });
-        case types.PROGRAMS_SUCCESS:
+        case types.PROGRAMS_LIST_SUCCESS:
         //30개면 더이상 보이면 안되기때문에 30미만이면 true
+          if(action.isInitial){
             return update(state, {
-                post: {
+                list: {
                     status: { $set: 'SUCCESS' },
                     data:{$set: action.data},
                     isLast:{$set: action.data.length < 30 }
                 }
             });
-        case types.PROGRAMS_FAILURE:
+          }
+          return state;
+        case types.PROGRAMS_LIST_FAILURE:
             return update(state, {
-                post: {
-                    status: { $set: 'FAILURE' },
-                    error: { $set: action.error }
+                list: {
+                    status: { $set: 'FAILURE' }
                 }
             });
+        case types.APPLY_PROGRAM_LIST_SUCCESS:
+          return update(state, {
+            applyList:{
+              data:{$set: action.data}
+            }
+          });
+        case types.SEARCH_PROGRAM_LIST_SUCCESS:
+          return update(state, {
+            searchList:{
+              data:{$set: action.data}
+            }
+          });
         default:
             return state;
     }

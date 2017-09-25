@@ -9,7 +9,7 @@ module.exports = {
             host: dbConfig.host,
             port: dbConfig.port,
             user: dbConfig.user,
-
+            password: dbConfig.password,
             database: dbConfig.database,
             multipleStatements: dbConfig.multipleStatements,
             connectionLimit: dbConfig.connectionLimit,

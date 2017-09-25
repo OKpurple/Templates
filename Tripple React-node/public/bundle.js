@@ -26462,7 +26462,7 @@
 	        var _this = _possibleConstructorReturn(this, (SerachForm.__proto__ || Object.getPrototypeOf(SerachForm)).call(this, props));
 
 	        _this.state = {
-	            city: "",
+	            city: "undefined",
 	            searchDate: ""
 	        };
 	        _this.handleChange = _this.handleChange.bind(_this);
@@ -26481,14 +26481,13 @@
 	    }, {
 	        key: "handleSearch",
 	        value: function handleSearch() {
-	            console.log('searchform' + this.state.city, this.state.searchDate);
 	            this.props.onSearch(this.state.city, this.state.searchDate);
 	        }
 	    }, {
 	        key: "componentDidMount",
 	        value: function componentDidMount() {
 	            var script = document.createElement('script');
-	            script.text = "function initAutocomplete() {\n                        // \uBA54\uC778\uD398\uC774\uC9C0\uC5D0\uC11C \uC9C0\uB3C4 \uAC80\uC0C9\uC2DC \uB3C4\uC2DC\uAE4C\uC9C0\uB9CC \uCD9C\uB825\uB418\uB3C4\uB85D \uAD6D\uAC00\uB294 kr\n                        var options = {\n                            types: ['(cities)'],\n                            componentRestrictions: {country: 'kr'}\n                        };\n                        var inputGoogleMap = document.getElementById('searchPlace');\n                        var searchBox = new google.maps.places.Autocomplete(inputGoogleMap,options);\n\n                        searchBox.addListener('place_changed', function(){\n                          inputGoogleMap.value = '\uAEBC\uC838'\n                          //searchBox.getPlace().formatted_address;\n\n                        });\n                      }\n\n      ";
+	            script.text = "function initAutocomplete() {\n                        // \uBA54\uC778\uD398\uC774\uC9C0\uC5D0\uC11C \uC9C0\uB3C4 \uAC80\uC0C9\uC2DC \uB3C4\uC2DC\uAE4C\uC9C0\uB9CC \uCD9C\uB825\uB418\uB3C4\uB85D \uAD6D\uAC00\uB294 kr\n                        var options = {\n                            types: ['(cities)'],\n                            componentRestrictions: {country: 'kr'}\n                        };\n                        var inputGoogleMap = document.getElementById('searchPlace');\n                        var searchBox = new google.maps.places.Autocomplete(inputGoogleMap,options);\n\n                        searchBox.addListener('place_changed', function(){\n                          inputGoogleMap.value =\n\n\n                        });\n                      }\n\n      ";
 
 	            var script1 = document.createElement('script');
 	            script1.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyC5PIOp7E83jz9-EtbthhehmGKL9AAWeNU&libraries=places&callback=initAutocomplete";
@@ -26590,17 +26589,16 @@
 	    return _possibleConstructorReturn(this, (GoogleMap.__proto__ || Object.getPrototypeOf(GoogleMap)).call(this, props));
 	  }
 
-	  _createClass(GoogleMap, [{
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      var allScripts = document.getElementsByTagName('script');
-	      [].filter.call(allScripts, function (scpt) {
-	        return scpt.src.indexOf('key=googleAPIKEY') >= 0;
-	      })[0].remove();
+	  // componentWillUnmount(){
+	  //   const allScripts = document.getElementsByTagName( 'script' );
+	  //   [].filter.call(
+	  //     allScripts,
+	  //     ( scpt ) => scpt.src.indexOf( 'key=googleAPIKEY' ) >= 0
+	  //    )[ 0 ].remove();
+	  //    window.google = {};
+	  // }
 
-	      window.google = {};
-	    }
-	  }, {
+	  _createClass(GoogleMap, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var script1 = document.createElement('script');
@@ -26680,7 +26678,7 @@
 	        key: "render",
 	        value: function render() {
 
-	            var CardItem = _react2.default.createElement(
+	            return _react2.default.createElement(
 	                "div",
 	                { className: "col s3" },
 	                _react2.default.createElement(
@@ -26689,15 +26687,21 @@
 	                    _react2.default.createElement(
 	                        "div",
 	                        { className: "card-image" },
-	                        _react2.default.createElement("img", { src: "http://blog.arborday.org/wp-content/uploads/2013/02/NEC1-300x200.jpg" })
+	                        _react2.default.createElement("img", { src: this.props.data.img_url })
 	                    ),
 	                    _react2.default.createElement(
 	                        "div",
 	                        { className: "card-action" },
 	                        _react2.default.createElement(
-	                            "p",
+	                            "span",
 	                            null,
-	                            "\u20A996,069 Bike and taste the best of Paris at your own pace."
+	                            "\u20A9 ",
+	                            this.props.data.price
+	                        ),
+	                        _react2.default.createElement(
+	                            "span",
+	                            null,
+	                            this.props.data.title
 	                        ),
 	                        _react2.default.createElement("br", null),
 	                        _react2.default.createElement(
@@ -26723,15 +26727,6 @@
 	                        )
 	                    )
 	                )
-	            );
-
-	            return _react2.default.createElement(
-	                "div",
-	                null,
-	                CardItem,
-	                CardItem,
-	                CardItem,
-	                CardItem
 	            );
 	        }
 	    }]);
@@ -58225,339 +58220,181 @@
 	  }
 
 	  _createClass(MyGuide, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {}
+	  }, {
 	    key: 'render',
 	    value: function render() {
 
-	      var myGuide = _react2.default.createElement(
-	        'div',
-	        { className: 'row cardContainer ' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'col s4' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'card ' },
+	      var myGuideTable = function myGuideTable(data) {
+	        return data.map(function (openProgram, i) {
+	          return _react2.default.createElement(
+	            'tr',
+	            null,
 	            _react2.default.createElement(
-	              'div',
-	              { className: 'card-image' },
-	              _react2.default.createElement('img', { src: 'http://blog.arborday.org/wp-content/uploads/2013/02/NEC1-300x200.jpg' })
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'card-action' },
+	              'td',
+	              null,
 	              _react2.default.createElement(
 	                'p',
 	                null,
-	                '\u20A996,069 Bike and taste the best of Paris at your own pace.'
-	              ),
-	              _react2.default.createElement('br', null),
-	              _react2.default.createElement(
-	                'a',
-	                { href: '#', className: 'blue-text' },
-	                '\uC0C1\uC138\uBCF4\uAE30'
-	              ),
+	                ' ',
+	                openProgram.meeting_date,
+	                ' '
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'td',
+	              null,
 	              ' ',
 	              _react2.default.createElement(
-	                'p',
-	                { className: 'right' },
-	                ' \uD3C9\uC810 ',
+	                'a',
+	                { href: '#', className: 'green-text' },
 	                _react2.default.createElement(
 	                  'span',
 	                  null,
-	                  ' 3.5'
+	                  '3'
 	                ),
-	                ' \uC810'
+	                '\uBA85'
 	              )
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'col s8 ' },
-	          _react2.default.createElement(
-	            'table',
-	            { className: 'striped centered' },
+	            ),
 	            _react2.default.createElement(
-	              'thead',
+	              'td',
 	              null,
 	              _react2.default.createElement(
-	                'tr',
-	                null,
+	                'a',
+	                { href: '#', className: 'orange-text' },
 	                _react2.default.createElement(
-	                  'th',
+	                  'span',
 	                  null,
-	                  '\uC77C\uC2DC'
+	                  '3'
+	                ),
+	                '\uBA85'
+	              )
+	            )
+	          );
+	        });
+	      };
+
+	      var myGuideList = function myGuideList(data) {
+	        return data.map(function (program, i) {
+	          return _react2.default.createElement(
+	            'div',
+	            { className: 'row cardContainer ' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col s4' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'card ' },
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'card-image' },
+	                  _react2.default.createElement('img', { src: program.img_url })
 	                ),
 	                _react2.default.createElement(
-	                  'th',
-	                  null,
-	                  '\uC608\uC57D\uD655\uC815'
-	                ),
-	                _react2.default.createElement(
-	                  'th',
-	                  null,
-	                  '\uC608\uC57D\uB300\uAE30'
+	                  'div',
+	                  { className: 'card-action' },
+	                  _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    program.start_time,
+	                    ' - ',
+	                    program.end_time
+	                  ),
+	                  _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    _react2.default.createElement(
+	                      'span',
+	                      null,
+	                      _react2.default.createElement(
+	                        'strong',
+	                        null,
+	                        '\u20A9',
+	                        program.price,
+	                        '  '
+	                      )
+	                    ),
+	                    program.title
+	                  ),
+	                  _react2.default.createElement('br', null),
+	                  _react2.default.createElement(
+	                    'a',
+	                    { href: '#', className: 'blue-text' },
+	                    '\uC0C1\uC138\uBCF4\uAE30'
+	                  ),
+	                  ' ',
+	                  _react2.default.createElement(
+	                    'p',
+	                    { className: 'right' },
+	                    ' \uD3C9\uC810 ',
+	                    _react2.default.createElement(
+	                      'span',
+	                      null,
+	                      ' 3.5'
+	                    ),
+	                    ' \uC810'
+	                  )
 	                )
 	              )
 	            ),
 	            _react2.default.createElement(
-	              'tbody',
-	              null,
+	              'div',
+	              { className: 'col s8 ' },
 	              _react2.default.createElement(
-	                'tr',
-	                null,
+	                'table',
+	                { className: 'striped centered' },
 	                _react2.default.createElement(
-	                  'td',
+	                  'thead',
 	                  null,
 	                  _react2.default.createElement(
-	                    'p',
+	                    'tr',
 	                    null,
-	                    ' ',
 	                    _react2.default.createElement(
-	                      'span',
+	                      'th',
 	                      null,
-	                      '2017'
+	                      '\uC77C\uC2DC'
 	                    ),
-	                    '\uB144  ',
 	                    _react2.default.createElement(
-	                      'span',
+	                      'th',
 	                      null,
-	                      'x'
+	                      '\uC608\uC57D\uD655\uC815'
 	                    ),
-	                    '\uC6D4 ',
 	                    _react2.default.createElement(
-	                      'span',
+	                      'th',
 	                      null,
-	                      'x'
-	                    ),
-	                    '\uC77C '
-	                  ),
-	                  _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    ' ',
-	                    _react2.default.createElement(
-	                      'span',
-	                      null,
-	                      '\uC624\uC804 xx:xx'
-	                    ),
-	                    ' ~ ',
-	                    _react2.default.createElement(
-	                      'span',
-	                      null,
-	                      '\uC624\uD6C4 xx:xx'
-	                    ),
-	                    ' '
+	                      '\uC608\uC57D\uB300\uAE30'
+	                    )
 	                  )
 	                ),
 	                _react2.default.createElement(
-	                  'td',
+	                  'tbody',
 	                  null,
-	                  ' ',
-	                  _react2.default.createElement(
-	                    'a',
-	                    { href: '#', className: 'green-text' },
-	                    _react2.default.createElement(
-	                      'span',
-	                      null,
-	                      '3'
-	                    ),
-	                    '\uBA85'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'td',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { href: '#', className: 'orange-text' },
-	                    _react2.default.createElement(
-	                      'span',
-	                      null,
-	                      '3'
-	                    ),
-	                    '\uBA85'
-	                  )
+	                  myGuideTable(program.openList)
 	                )
 	              ),
 	              _react2.default.createElement(
-	                'tr',
-	                null,
+	                'div',
+	                { className: 'col s1 offset-s6' },
 	                _react2.default.createElement(
-	                  'td',
-	                  null,
+	                  _reactRouterDom.NavLink,
+	                  { to: '/' },
 	                  _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    ' ',
-	                    _react2.default.createElement(
-	                      'span',
-	                      null,
-	                      '2017'
-	                    ),
-	                    '\uB144  ',
-	                    _react2.default.createElement(
-	                      'span',
-	                      null,
-	                      'x'
-	                    ),
-	                    '\uC6D4 ',
-	                    _react2.default.createElement(
-	                      'span',
-	                      null,
-	                      'x'
-	                    ),
-	                    '\uC77C '
-	                  ),
-	                  _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    ' ',
-	                    _react2.default.createElement(
-	                      'span',
-	                      null,
-	                      '\uC624\uC804 xx:xx'
-	                    ),
-	                    ' ~ ',
-	                    _react2.default.createElement(
-	                      'span',
-	                      null,
-	                      '\uC624\uD6C4 xx:xx'
-	                    ),
-	                    ' '
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'td',
-	                  null,
-	                  ' ',
-	                  _react2.default.createElement(
-	                    'a',
-	                    { href: '#', className: 'green-text' },
-	                    _react2.default.createElement(
-	                      'span',
-	                      null,
-	                      '3'
-	                    ),
-	                    '\uBA85'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'td',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { href: '#', className: 'orange-text' },
-	                    _react2.default.createElement(
-	                      'span',
-	                      null,
-	                      '3'
-	                    ),
-	                    '\uBA85'
-	                  )
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'tr',
-	                null,
-	                _react2.default.createElement(
-	                  'td',
-	                  null,
-	                  _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    ' ',
-	                    _react2.default.createElement(
-	                      'span',
-	                      null,
-	                      '2017'
-	                    ),
-	                    '\uB144  ',
-	                    _react2.default.createElement(
-	                      'span',
-	                      null,
-	                      'x'
-	                    ),
-	                    '\uC6D4 ',
-	                    _react2.default.createElement(
-	                      'span',
-	                      null,
-	                      'x'
-	                    ),
-	                    '\uC77C '
-	                  ),
-	                  _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    ' ',
-	                    _react2.default.createElement(
-	                      'span',
-	                      null,
-	                      '\uC624\uC804 xx:xx'
-	                    ),
-	                    ' ~ ',
-	                    _react2.default.createElement(
-	                      'span',
-	                      null,
-	                      '\uC624\uD6C4 xx:xx'
-	                    ),
-	                    ' '
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'td',
-	                  null,
-	                  ' ',
-	                  _react2.default.createElement(
-	                    'a',
-	                    { href: '#', className: 'green-text' },
-	                    _react2.default.createElement(
-	                      'span',
-	                      null,
-	                      '3'
-	                    ),
-	                    '\uBA85'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'td',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { href: '#', className: 'orange-text' },
-	                    _react2.default.createElement(
-	                      'span',
-	                      null,
-	                      '3'
-	                    ),
-	                    '\uBA85'
+	                    'button',
+	                    { className: 'btn right marginT waves-effect waves-light ' },
+	                    '\uC77C\uC815\uCD94\uAC00'
 	                  )
 	                )
 	              )
 	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'col s1 offset-s6' },
-	            _react2.default.createElement(
-	              _reactRouterDom.NavLink,
-	              { to: '/' },
-	              _react2.default.createElement(
-	                'button',
-	                { className: 'btn right marginT waves-effect waves-light ' },
-	                '\uC77C\uC815\uCD94\uAC00'
-	              )
-	            )
-	          )
-	        )
-	      );
+	          );
+	        });
+	      };
 
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        myGuide,
-	        myGuide,
-	        myGuide
+	        myGuideList(this.props.data)
 	      );
 	    }
 	  }]);
@@ -58576,7 +58413,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	              value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -58600,108 +58437,119 @@
 	/*<span className="card-title black-text">내가 예약한 여행</span>*/
 
 	var MyReservedTravel = function (_Component) {
-	              _inherits(MyReservedTravel, _Component);
+	  _inherits(MyReservedTravel, _Component);
 
-	              function MyReservedTravel(props) {
-	                            _classCallCheck(this, MyReservedTravel);
+	  function MyReservedTravel(props) {
+	    _classCallCheck(this, MyReservedTravel);
 
-	                            return _possibleConstructorReturn(this, (MyReservedTravel.__proto__ || Object.getPrototypeOf(MyReservedTravel)).call(this, props));
-	              }
+	    return _possibleConstructorReturn(this, (MyReservedTravel.__proto__ || Object.getPrototypeOf(MyReservedTravel)).call(this, props));
+	  }
 
-	              _createClass(MyReservedTravel, [{
-	                            key: 'render',
-	                            value: function render() {
+	  _createClass(MyReservedTravel, [{
+	    key: 'render',
+	    value: function render() {
+	      var waitStatus = _react2.default.createElement(
+	        'p',
+	        { className: 'right orange-text' },
+	        '\uD655\uC815\uB300\uAE30'
+	      );
+	      var confirmStatus = _react2.default.createElement(
+	        'p',
+	        { className: 'right green-text' },
+	        '\uCC38\uC5EC\uD655\uC815'
+	      );
 
-	                                          var myReservedTravel = _react2.default.createElement(
-	                                                        'div',
-	                                                        null,
-	                                                        _react2.default.createElement(
-	                                                                      'div',
-	                                                                      { className: 'col s4 ' },
-	                                                                      _react2.default.createElement(
-	                                                                                    'div',
-	                                                                                    { className: 'card ' },
-	                                                                                    _react2.default.createElement(
-	                                                                                                  'div',
-	                                                                                                  { className: 'card-image' },
-	                                                                                                  _react2.default.createElement('img', { src: 'http://blog.arborday.org/wp-content/uploads/2013/02/NEC1-300x200.jpg' })
-	                                                                                    ),
-	                                                                                    _react2.default.createElement(
-	                                                                                                  'div',
-	                                                                                                  { className: 'card-action' },
-	                                                                                                  _react2.default.createElement(
-	                                                                                                                'p',
-	                                                                                                                null,
-	                                                                                                                '\u20A996,069 Bike and taste the best of Paris at your own pace.'
-	                                                                                                  ),
-	                                                                                                  _react2.default.createElement('br', null),
-	                                                                                                  _react2.default.createElement(
-	                                                                                                                'a',
-	                                                                                                                { href: '#', className: 'blue-text' },
-	                                                                                                                '\uC0C1\uC138\uBCF4\uAE30'
-	                                                                                                  ),
-	                                                                                                  _react2.default.createElement(
-	                                                                                                                'p',
-	                                                                                                                { className: 'right green-text' },
-	                                                                                                                '\uCC38\uC5EC\uD655\uC815'
-	                                                                                                  )
-	                                                                                    )
-	                                                                      )
-	                                                        )
-	                                          );
+	      var myReservedList = function myReservedList(data) {
+	        return data.map(function (program, i) {
+	          return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col s4 ' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'card ' },
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'card-image' },
+	                  _react2.default.createElement('img', { src: program.img_url })
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'card-action' },
+	                  _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    program.meeting_date,
+	                    ' | ',
+	                    program.start_time,
+	                    ' - ',
+	                    program.end_time
+	                  ),
+	                  _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    _react2.default.createElement(
+	                      'strong',
+	                      null,
+	                      '\u20A9',
+	                      program.price
+	                    ),
+	                    ' ',
+	                    program.title
+	                  ),
+	                  _react2.default.createElement('br', null),
+	                  _react2.default.createElement(
+	                    'a',
+	                    { href: '#', className: 'blue-text' },
+	                    '\uC0C1\uC138\uBCF4\uAE30'
+	                  ),
+	                  program.status > 0 ? confirmStatus : waitStatus
+	                )
+	              )
+	            )
+	          );
+	        });
+	      };
 
-	                                          var myReservedTravel_yet = _react2.default.createElement(
-	                                                        'div',
-	                                                        null,
-	                                                        _react2.default.createElement(
-	                                                                      'div',
-	                                                                      { className: 'col s4' },
-	                                                                      _react2.default.createElement(
-	                                                                                    'div',
-	                                                                                    { className: 'card ' },
-	                                                                                    _react2.default.createElement(
-	                                                                                                  'div',
-	                                                                                                  { className: 'card-image' },
-	                                                                                                  _react2.default.createElement('img', { src: 'http://blog.arborday.org/wp-content/uploads/2013/02/NEC1-300x200.jpg' })
-	                                                                                    ),
-	                                                                                    _react2.default.createElement(
-	                                                                                                  'div',
-	                                                                                                  { className: 'card-action' },
-	                                                                                                  _react2.default.createElement(
-	                                                                                                                'p',
-	                                                                                                                null,
-	                                                                                                                '\u20A996,069 Bike and taste the best of Paris at your own pace.'
-	                                                                                                  ),
-	                                                                                                  _react2.default.createElement('br', null),
-	                                                                                                  _react2.default.createElement(
-	                                                                                                                'a',
-	                                                                                                                { href: '#', className: 'blue-text' },
-	                                                                                                                '\uC0C1\uC138\uBCF4\uAE30'
-	                                                                                                  ),
-	                                                                                                  ' ',
-	                                                                                                  _react2.default.createElement(
-	                                                                                                                'p',
-	                                                                                                                { className: 'right orange-text' },
-	                                                                                                                '\uD655\uC815\uB300\uAE30'
-	                                                                                                  )
-	                                                                                    )
-	                                                                      )
-	                                                        )
-	                                          );
+	      // const myReservedTravel_yet = (
+	      //
+	      //     <div>
+	      //       <div className="col s4">
+	      //
+	      //         <div className="card ">
+	      //
+	      //           <div className="card-image">
+	      //            <img src="http://blog.arborday.org/wp-content/uploads/2013/02/NEC1-300x200.jpg"/>
+	      //
+	      //           </div>
+	      //
+	      //           <div className="card-action">
+	      //             <p>₩96,069 Bike and taste the best of Paris at your own pace.</p>
+	      //             <br></br>
+	      //             <a href="#" className="blue-text">상세보기</a> <p className="right orange-text">확정대기</p>
+	      //           </div>
+	      //
+	      //
+	      //           </div>
+	      //
+	      //         </div>
+	      //      </div>
+	      //
+	      //
+	      // )
 
-	                                          return _react2.default.createElement(
-	                                                        'div',
-	                                                        { className: 'row cardContainer' },
-	                                                        myReservedTravel,
-	                                                        myReservedTravel_yet,
-	                                                        myReservedTravel,
-	                                                        myReservedTravel_yet,
-	                                                        myReservedTravel
-	                                          );
-	                            }
-	              }]);
 
-	              return MyReservedTravel;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'row cardContainer' },
+	        myReservedList(this.props.data)
+	      );
+	    }
+	  }]);
+
+	  return MyReservedTravel;
 	}(_react.Component);
 
 	MyReservedTravel.propTypes = propTypes;
@@ -58782,11 +58630,12 @@
 	        // API REQUEST
 	        return _axios2.default.post('/api/account/signin', { login_id: login_id, password: password }).then(function (response) {
 	            // SUCCEED
+
 	            if (response.data.meta.code === -10) {
 	                console.log("INVALID_REQUEST");
 	            } else {
-	                console.log("loginaction success");
-	                dispatch(loginSuccess(login_id));
+	                console.log("loginaction success" + response.data.data.user_id);
+	                dispatch(loginSuccess(response.data.data.user_id));
 	            }
 	        }).catch(function (error) {
 	            // FAILED
@@ -58813,9 +58662,14 @@
 	var OPEN_PROGRAMS_SUCCESS = exports.OPEN_PROGRAMS_SUCCESS = 'OPEN_PROGRAMS_SUCCESS';
 	var OPEN_PROGRAMS_FAILURE = exports.OPEN_PROGRAMS_FAILURE = 'OPEN_PROGRAMS_FAILURE';
 
-	var PROGRAMS = exports.PROGRAMS = 'PROGRAMS';
-	var PROGRAMS_SUCCESS = exports.PROGRAMS_SUCCESS = 'PROGRAMS_SUCCESS';
-	var PROGRAMS_FAILURE = exports.PROGRAMS_FAILURE = 'PROGRAMS_FAILURE';
+	var PROGRAMS_LIST = exports.PROGRAMS_LIST = 'PROGRAMS_LIST';
+	var PROGRAMS_LIST_SUCCESS = exports.PROGRAMS_LIST_SUCCESS = 'PROGRAMS_LIST_SUCCESS';
+	var PROGRAMS_LIST_FAILURE = exports.PROGRAMS_LIST_FAILURE = 'PROGRAMS_LIST_FAILURE';
+
+	var APPLY_PROGRAM_LIST_SUCCESS = exports.APPLY_PROGRAM_LIST_SUCCESS = 'APPLY_PROGRAM_LIST_SUCCESS';
+
+	var SEARCH_PROGRAM_LIST = exports.SEARCH_PROGRAM_LIST = 'SEARCH_PROGRAM_LIST';
+	var SEARCH_PROGRAM_LIST_SUCCESS = exports.SEARCH_PROGRAM_LIST_SUCCESS = 'SEARCH_PROGRAM_LIST_SUCCESS';
 
 /***/ }),
 /* 502 */
@@ -62654,7 +62508,11 @@
 	        key: 'HandleSearch',
 	        value: function HandleSearch(city, searchDate) {
 
-	            this.props.history.push('/SearchResult/' + city + '/' + searchDate);
+	            if (city === '' && searchDate === '') {
+	                this.props.history.push('/SearchResult');
+	            } else {
+	                this.props.history.push('/SearchResult/' + city + '/' + searchDate);
+	            }
 	        }
 	    }, {
 	        key: 'render',
@@ -62903,7 +62761,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -62916,7 +62774,7 @@
 
 	var _reactRedux = __webpack_require__(528);
 
-	var _openProgram = __webpack_require__(570);
+	var _program = __webpack_require__(570);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -62927,64 +62785,72 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var SearchResult = function (_Component) {
-	    _inherits(SearchResult, _Component);
+	  _inherits(SearchResult, _Component);
 
-	    function SearchResult(props) {
-	        _classCallCheck(this, SearchResult);
+	  function SearchResult(props) {
+	    _classCallCheck(this, SearchResult);
 
-	        return _possibleConstructorReturn(this, (SearchResult.__proto__ || Object.getPrototypeOf(SearchResult)).call(this, props));
+	    return _possibleConstructorReturn(this, (SearchResult.__proto__ || Object.getPrototypeOf(SearchResult)).call(this, props));
+	  }
+
+	  _createClass(SearchResult, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+
+	      console.log("searchResult Start!");
+	      var city = this.props.match.params.city;
+	      var searchDate = this.props.match.params.searchDate;
+	      this.props.searchProgramListRequest(city, searchDate).then(function () {
+	        console.log(_this2.props.searchProgramData);
+	      });
 	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var searchResultList = function searchResultList(data) {
+	        return data.map(function (program, i) {
+	          return _react2.default.createElement(_components.GuideCardItem, { data: program, key: i });
+	        });
+	      };
 
-	    _createClass(SearchResult, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            console.log(this.props.match.params);
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'container ' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'row' },
-	                    _react2.default.createElement(
-	                        'h3',
-	                        null,
-	                        '\uB3C4\uC2DC, \uC77C\uC815 \uAC80\uC0C9 \uACB0\uACFC'
-	                    ),
-	                    _react2.default.createElement(_components.GuideCardItem, null),
-	                    _react2.default.createElement(_components.GuideCardItem, null)
-	                )
-	            );
-	        }
-	    }]);
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'container ' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            '\uB3C4\uC2DC, \uC77C\uC815 \uAC80\uC0C9 \uACB0\uACFC'
+	          ),
+	          searchResultList(this.props.searchProgramData)
+	        )
+	      );
+	    }
+	  }]);
 
-	    return SearchResult;
+	  return SearchResult;
 	}(_react.Component);
 
-	//
-	// const mapStateToProps = (state) => {
-	//     return {
-	//         status: state.Login.status,
-	//         opData: state.OpenProgram.list.data
-	//     };
-	// };
-	//
-	// const mapDispatchToProps = (dispatch) => {
-	//   return{
-	//     openProgramRequest:(city,meetingDate)=>{
-	//       return dispatch(openProgramRequest(city, meetingDate));
-	//     }
-	//
-	//   };
-	// }
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
 
-	//export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);
+	    searchProgramData: state.Program.searchList.data
+	  };
+	};
 
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    searchProgramListRequest: function searchProgramListRequest(city, meetingDate) {
+	      return dispatch((0, _program.searchProgramListRequest)(city, meetingDate));
+	    }
 
-	exports.default = SearchResult;
+	  };
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SearchResult);
 
 /***/ }),
 /* 570 */
@@ -62995,8 +62861,14 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.openPrograms = openPrograms;
-	exports.openProgramsRequest = openProgramsRequest;
+	exports.programsList = programsList;
+	exports.programsListFailure = programsListFailure;
+	exports.programsListSuccess = programsListSuccess;
+	exports.searchProgramListSuccess = searchProgramListSuccess;
+	exports.searchProgramListRequest = searchProgramListRequest;
+	exports.applyProgramListRequest = applyProgramListRequest;
+	exports.programListRequest = programListRequest;
+	exports.applyProgramListSuccess = applyProgramListSuccess;
 
 	var _ActionTypes = __webpack_require__(501);
 
@@ -63006,14 +62878,84 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function openPrograms() {
+	function programsList() {
 	  return {
-	    type: _ActionTypes.OPEN_PROGRAMS
+	    type: _ActionTypes.PROGRAMS_LIST
+	  };
+	}
+	function programsListFailure() {
+	  return {
+	    type: _ActionTypes.PROGRAMS_LIST
 	  };
 	}
 
-	function openProgramsRequest(city, meeting_date) {
-	  return function (dispatch) {};
+	function programsListSuccess(data, isInitial, listType) {
+	  return {
+	    type: _ActionTypes.PROGRAMS_LIST_SUCCESS,
+	    data: data,
+	    isInitial: isInitial,
+	    listType: listType
+	  };
+	}
+
+	function searchProgramListSuccess(data) {
+	  return {
+	    type: _ActionTypes.SEARCH_PROGRAM_LIST_SUCCESS,
+	    data: data
+	  };
+	}
+
+	function searchProgramListRequest(city, date) {
+	  return function (dispatch) {
+
+	    if (city === undefined) {
+	      console.log("city undefined");
+	      city = "undefined";
+	    }
+
+	    var url = '/api/openPrograms/search/' + city + '/' + date;
+
+	    return _axios2.default.get(url).then(function (res) {
+	      dispatch(searchProgramListSuccess(res.data.data));
+	    }).catch(function (err) {
+	      dispatch();
+	    });
+	  };
+	};
+
+	//내가 예약한 프로그램
+	function applyProgramListRequest(user_id) {
+	  return function (dispatch) {
+	    var url = 'api/openPrograms/' + user_id;
+
+	    return _axios2.default.get(url).then(function (response) {
+	      console.log(url);
+	      dispatch(applyProgramListSuccess(response.data.data));
+	    }).catch(function (err) {
+	      dispath();
+	    });
+	  };
+	}
+
+	//나의 프로그램
+	function programListRequest(isInitial, listType, user_id) {
+	  return function (dispatch) {
+	    var url = 'api/programs/op/' + user_id;
+
+	    return _axios2.default.get(url).then(function (response) {
+	      console.log(url);
+	      dispatch(programsListSuccess(response.data.data, isInitial, listType));
+	    }).catch(function (err) {
+	      dispatch(programsListFailure());
+	    });
+	  };
+	}
+
+	function applyProgramListSuccess(data) {
+	  return {
+	    type: _ActionTypes.APPLY_PROGRAM_LIST_SUCCESS,
+	    data: data
+	  };
 	}
 
 /***/ }),
@@ -63408,10 +63350,8 @@
 	                    _react2.default.createElement(
 	                        'h3',
 	                        null,
-	                        '\uC5EC\uD589\uB9AC\uC2A4\uD2B8!12asdf'
-	                    ),
-	                    _react2.default.createElement(_components.GuideCardItem, null),
-	                    _react2.default.createElement(_components.GuideCardItem, null)
+	                        '\uC5EC\uD589\uB9AC\uC2A4\uD2B8!'
+	                    )
 	                )
 	            );
 	        }
@@ -63503,7 +63443,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -63513,6 +63453,10 @@
 	var _react2 = _interopRequireDefault(_react);
 
 	var _components = __webpack_require__(187);
+
+	var _program = __webpack_require__(570);
+
+	var _reactRedux = __webpack_require__(528);
 
 	var _reactBootstrap = __webpack_require__(241);
 
@@ -63524,59 +63468,89 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var propTypes = {};
-	var defaultProps = {};
-
 	var MyTrip = function (_Component) {
-	  _inherits(MyTrip, _Component);
+	    _inherits(MyTrip, _Component);
 
-	  function MyTrip(props) {
-	    _classCallCheck(this, MyTrip);
+	    function MyTrip(props) {
+	        _classCallCheck(this, MyTrip);
 
-	    return _possibleConstructorReturn(this, (MyTrip.__proto__ || Object.getPrototypeOf(MyTrip)).call(this, props));
-	  }
-
-	  _createClass(MyTrip, [{
-	    key: 'render',
-	    value: function render() {
-
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'row' },
-	        _react2.default.createElement(_components.SideNav, null),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'col s8 ' },
-	          _react2.default.createElement(
-	            'h3',
-	            null,
-	            ' \uB098\uC758 \uC5EC\uD589 \uD398\uC774\uC9C0'
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Tabs,
-	            { defaultActiveKey: 1, id: 'uncontrolled-tab-example' },
-	            _react2.default.createElement(
-	              _reactBootstrap.Tab,
-	              { eventKey: 1, title: '\uB0B4\uAC00 \uB9CC\uB4E0 \uC5EC\uD589' },
-	              _react2.default.createElement(_components.MyGuide, null)
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Tab,
-	              { eventKey: 2, title: '\uB0B4\uAC00 \uC608\uC57D\uD55C \uC5EC\uD589' },
-	              _react2.default.createElement(_components.MyReservedTravel, null)
-	            )
-	          )
-	        )
-	      );
+	        return _possibleConstructorReturn(this, (MyTrip.__proto__ || Object.getPrototypeOf(MyTrip)).call(this, props));
 	    }
-	  }]);
 
-	  return MyTrip;
+	    _createClass(MyTrip, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            console.log(this.props.currentUser);
+	            this.props.programListRequest(true, "new", this.props.currentUser).then(function () {
+
+	                console.log(_this2.props.programData);
+	            });
+	            this.props.applyProgramListRequest(this.props.currentUser).then(function () {
+	                console.log(_this2.props.applyProgramData);
+	                console.log('apply');
+	            });
+	            console.log("componentDidMount");
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'row' },
+	                _react2.default.createElement(_components.SideNav, null),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'col s8 ' },
+	                    _react2.default.createElement(
+	                        'h3',
+	                        null,
+	                        ' \uB098\uC758 \uC5EC\uD589 \uD398\uC774\uC9C0'
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Tabs,
+	                        { defaultActiveKey: 1, id: 'uncontrolled-tab-example' },
+	                        _react2.default.createElement(
+	                            _reactBootstrap.Tab,
+	                            { eventKey: 1, title: '\uB0B4\uAC00 \uB9CC\uB4E0 \uC5EC\uD589' },
+	                            _react2.default.createElement(_components.MyGuide, { data: this.props.programData })
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactBootstrap.Tab,
+	                            { eventKey: 2, title: '\uB0B4\uAC00 \uC608\uC57D\uD55C \uC5EC\uD589' },
+	                            _react2.default.createElement(_components.MyReservedTravel, { data: this.props.applyProgramData })
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return MyTrip;
 	}(_react.Component);
 
-	MyTrip.propTypes = propTypes;
-	MyTrip.defaultProps = defaultProps;
-	exports.default = MyTrip;
+	var mapStateToProps = function mapStateToProps(state) {
+	    return {
+	        isLoggedIn: state.Login.status.isLoggedIn,
+	        currentUser: state.Login.status.currentUser,
+	        programData: state.Program.list.data,
+	        applyProgramData: state.Program.applyList.data
+	    };
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	    return {
+	        programListRequest: function programListRequest(isInitial, listType, id) {
+	            return dispatch((0, _program.programListRequest)(isInitial, listType, id));
+	        },
+	        applyProgramListRequest: function applyProgramListRequest(id) {
+	            return dispatch((0, _program.applyProgramListRequest)(id));
+	        }
+	    };
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(MyTrip);
 
 /***/ }),
 /* 578 */
@@ -63779,9 +63753,7 @@
 	                        'h3',
 	                        null,
 	                        '\uC704\uC2DC\uB9AC\uC2A4\uD2B8qaaasdfasfd'
-	                    ),
-	                    _react2.default.createElement(_components.GuideCardItem, null),
-	                    _react2.default.createElement(_components.GuideCardItem, null)
+	                    )
 	                )
 	            );
 	        }
@@ -63873,13 +63845,14 @@
 	                }
 	            });
 	        case types.AUTH_LOGIN_SUCCESS:
+	            console.log(action.loginId + " login in reducers");
 	            return (0, _reactAddonsUpdate2.default)(state, {
 	                login: {
 	                    status: { $set: 'SUCCESS' }
 	                },
 	                status: {
 	                    isLoggedIn: { $set: true },
-	                    currentUser: { $set: action.login_id }
+	                    currentUser: { $set: action.loginId }
 	                }
 	            });
 	        case types.AUTH_LOGIN_FAILURE:
@@ -64171,6 +64144,12 @@
 	        status: 'INIT',
 	        data: [],
 	        isLast: false
+	    },
+	    applyList: {
+	        data: []
+	    },
+	    searchList: {
+	        data: []
 	    }
 	};
 
@@ -64180,27 +64159,40 @@
 	    }
 
 	    switch (action.type) {
-	        case types.PROGRAMS:
+	        case types.PROGRAMS_LIST:
 	            return (0, _reactAddonsUpdate2.default)(state, {
-	                post: {
-	                    status: { $set: 'WAITING' },
-	                    error: { $set: -1 }
+	                list: {
+	                    status: { $set: 'WAITING' }
 	                }
 	            });
-	        case types.PROGRAMS_SUCCESS:
+	        case types.PROGRAMS_LIST_SUCCESS:
 	            //30개면 더이상 보이면 안되기때문에 30미만이면 true
+	            if (action.isInitial) {
+	                return (0, _reactAddonsUpdate2.default)(state, {
+	                    list: {
+	                        status: { $set: 'SUCCESS' },
+	                        data: { $set: action.data },
+	                        isLast: { $set: action.data.length < 30 }
+	                    }
+	                });
+	            }
+	            return state;
+	        case types.PROGRAMS_LIST_FAILURE:
 	            return (0, _reactAddonsUpdate2.default)(state, {
-	                post: {
-	                    status: { $set: 'SUCCESS' },
-	                    data: { $set: action.data },
-	                    isLast: { $set: action.data.length < 30 }
+	                list: {
+	                    status: { $set: 'FAILURE' }
 	                }
 	            });
-	        case types.PROGRAMS_FAILURE:
+	        case types.APPLY_PROGRAM_LIST_SUCCESS:
 	            return (0, _reactAddonsUpdate2.default)(state, {
-	                post: {
-	                    status: { $set: 'FAILURE' },
-	                    error: { $set: action.error }
+	                applyList: {
+	                    data: { $set: action.data }
+	                }
+	            });
+	        case types.SEARCH_PROGRAM_LIST_SUCCESS:
+	            return (0, _reactAddonsUpdate2.default)(state, {
+	                searchList: {
+	                    data: { $set: action.data }
 	                }
 	            });
 	        default:

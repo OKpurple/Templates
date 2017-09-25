@@ -20,10 +20,6 @@ class WishList extends Component {
 
             <div className="row">
               <h3>위시리스트qaaasdfasfd</h3>
-
-              <GuideCardItem/>
-              <GuideCardItem/>
-
             </div>
 
           </div>

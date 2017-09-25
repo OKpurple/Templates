@@ -48,7 +48,12 @@ router.post('/signin', function (req, res) {
       if (result.length === 0) {
         res.json(_utils.INVALID_REQUEST);
       } else {
-        res.json(_utils.SUCCESS);
+
+        res.json((0, _utils.toRes)(_utils.SUCCESS, {
+          data: {
+            user_id: result[0].user_id
+          }
+        }));
       };
     });
   });

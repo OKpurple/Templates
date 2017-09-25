@@ -22,9 +22,7 @@ class Profile extends Component {
             <form className="col s12 ">
 
 
-
-
-
+        
                 <div className="row">
                   <div className='input-field col s2'>
                     <input disabled id="name" type="text" className="validate"/>
@@ -105,10 +103,14 @@ class Profile extends Component {
                     <input disabled id="introduce" type="text" className="validate"/>
                     <label for="introduce" className='purple-text'>자기소개</label>
                   </div>
-                  <div className="input-field col s6">
-                    <input id="introduce_area" type="textarea"  className="validate"/>
+
+                  <div className="input-field col s10" >
+
+                    <textarea id="textarea1" class="materialize-textarea"></textarea>
+
 
                   </div>
+
                 </div>
             </form>
 

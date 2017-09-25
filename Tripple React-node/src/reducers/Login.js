@@ -23,13 +23,14 @@ export default function Login(state = initialState, action) {
                 }
             });
         case types.AUTH_LOGIN_SUCCESS:
+          console.log(action.loginId + " login in reducers")
             return update(state, {
                 login: {
                     status: { $set: 'SUCCESS' }
                 },
                 status: {
                     isLoggedIn: { $set: true },
-                    currentUser: { $set: action.login_id }
+                    currentUser: { $set: action.loginId }
                 }
             });
         case types.AUTH_LOGIN_FAILURE:
