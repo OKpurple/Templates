@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Header } from '../components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {Login, Home, Register,SearchResult,CreateProgram,
-  CreateMeetPlace,CreateDetail,CreatePDetail,Program, TravelList, MyPage, MyTrip, Review, WishList} from '../containers';
+  CreateMeetPlace,CreateDetail,CreatePDetail,Program, TravelList, MyPage, MyTrip, Review, WishList, ProgramDetail} from '../containers';
 import {logoutRequest} from '../actions/login';
 import { connect } from 'react-redux';
 
@@ -72,6 +72,7 @@ class App extends Component {
                           <Route path="/MyTrip" component={MyTrip}/>
                           <Route path="/Review" component={Review}/>
                           <Route path="/WishList" component={WishList}/>
+                          <Route path="/ProgramDetail" component={ProgramDetail}/>
                       </Switch>
                     </div>
 

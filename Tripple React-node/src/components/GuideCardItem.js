@@ -6,8 +6,10 @@ const defaultProps = {
 class GuideCardItem extends Component {
     constructor(props) {
         super(props);
+
     }
-    
+
+
     render() {
 
 

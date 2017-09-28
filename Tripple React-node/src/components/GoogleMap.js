@@ -99,7 +99,7 @@ class GoogleMap extends Component {
 
 
       this.instance.appendChild(script1);
-      //this.instance.appendChild(script);
+      this.instance.appendChild(script);
 
     }
 

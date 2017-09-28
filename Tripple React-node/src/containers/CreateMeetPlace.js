@@ -15,8 +15,13 @@ class CreateMeetPlace extends Component {
           <div>
             <h3 className='center'>2. 모임 위치 등록</h3>
             <div className = 'row'>
-              <GoogleMap/>
-              <MeetingPlace/>
+              <div className="col s6">
+                <GoogleMap/>
+              </div>
+              <div className="col s6">
+                <MeetingPlace/>
+              </div>
+
               <div className='col s8 offset-s2'>
                 <NavLink to='/CreateDetail'><button className="btn right marginT waves-effect waves-light red lighten-3">다음</button></NavLink>
                 <NavLink to='/CreateProgram'><button className="btn right marginT waves-effect waves-light red lighten-3">이전</button></NavLink>
