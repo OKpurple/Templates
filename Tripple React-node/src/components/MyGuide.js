@@ -51,7 +51,8 @@ class MyGuide extends Component {
                       <p>{program.start_time} - {program.end_time}</p>
                       <p><span><strong>₩{program.price}  </strong></span>{program.title}</p>
                       <br></br>
-                      <a href="#" className="blue-text">상세보기</a> <p className="right"> 평점 <span> 3.5</span> 점</p>
+                      <NavLink to='ProgramDetail' className="blue-text">상세보기</NavLink><p className="right"> 평점 <span> 3.5</span> 점</p>
+
                     </div>
 
 

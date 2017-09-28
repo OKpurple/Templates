@@ -11,7 +11,7 @@ class MyPage extends Component {
     }
     render() {
         return(
-          <div className='row '>
+          <div className='row marginT'>
             <SideNav />
             <Profile />
             <div className= 'col s1 offset-s6'>

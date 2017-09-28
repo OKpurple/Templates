@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { NavLink } from 'react-router-dom';
 const propTypes = {
 };
 const defaultProps = {
@@ -26,8 +27,8 @@ class GuideCardItem extends Component {
                 <span>₩ {this.props.data.price}</span>
                 <span>{this.props.data.title}</span>
                 <br></br>
-                <a href="#" className="blue-text left">상세보기</a>
-                <a href="#" className="blue-text ">찜하기</a>
+                <NavLink to="/ProgramDetail" className="blue-text left">상세보기</NavLink>
+                <a className="blue-text" onClick="handleDip">찜하기</a>
                 <p className="right black-text"> 평점 <span> 3.5</span> 점</p>
               </div>
             </div>

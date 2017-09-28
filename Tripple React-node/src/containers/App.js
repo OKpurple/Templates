@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { Header } from '../components';
+import { Footer,Header } from '../components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import {Login, Home, Register,SearchResult,CreateProgram,
+import {Test,Login, Home, Register,SearchResult,CreateProgram,
   CreateMeetPlace,CreateDetail,CreatePDetail,Program, TravelList, MyPage, MyTrip, Review, WishList, ProgramDetail} from '../containers';
 import {logoutRequest} from '../actions/login';
 import { connect } from 'react-redux';
@@ -51,12 +51,13 @@ class App extends Component {
           <Router>
              <div>
 
-                {isAuth ? undefined : <Header isLoggedIn={this.props.status.isLoggedIn}
-                                                  onLogout={this.handleLogout}/>}
+             {isAuth ? undefined : <Header isLoggedIn={this.props.status.isLoggedIn}
+                                               onLogout={this.handleLogout}/>}
 
-                    <div >
+                    <div>
                       <Switch>
                           <Route exact path="/" component={Home}/>
+                          <Route path="/Test" component={Test}/>
                           <Route path="/Login" component={Login}/>
                           <Route path="/Register" component={Register}/>
                           <Route path="/SearchResult/:city/:searchDate" component={SearchResult}/>
@@ -75,9 +76,11 @@ class App extends Component {
                           <Route path="/ProgramDetail" component={ProgramDetail}/>
                       </Switch>
                     </div>
-
+                    <Footer/>
 
              </div>
+
+
          </Router>
 
         );

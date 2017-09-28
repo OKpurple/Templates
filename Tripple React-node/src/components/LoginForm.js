@@ -67,16 +67,16 @@ class LoginForm extends Component {
                  onChange={this.handleChange}
                  value={this.state.password}/>
              </div>
-             <button className="col s12 btn waves-effect waves-light red lighten-3"
+             <button className="col s12 btn waves-effect waves-light blue-grey lighten-1"
              onClick={this.handleLogin}>로그인 </button>
          </div>
      </div>)
 
         return(
-          <div className="container auth">
+          <div className="container auth Form">
 
              <div className="card">
-                 <div className="header pink white-text center">
+                 <div className="header black white-text center">
                      <div className="card-content">로그인</div>
                  </div>
                  {loginView}

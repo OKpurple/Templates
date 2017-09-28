@@ -55,26 +55,26 @@ class SerachForm extends Component {
     render() {
 
         return(
-          <div className="container search" ref={el => (this.instance = el)}>
-          <h2 className="marginB">어디로 갈래요?</h2>
-          <div className="row">
-            <div className="col s5">
-              <input name="city"
-               id = "searchPlace"
-               placeholder="City"
-               type="text"
-               onChange={this.handleChange}
-               />
-             </div>
-            <div className="col s5">
-              <input name="searchDate"
-               type="date"
-               onChange={this.handleChange}
-               />
+          <div className="container" ref={el => (this.instance = el)}>
+          <h2 className="marginB white-text">어디로 갈래요?</h2>
+            <div className="row">
+              <div className="col s5">
+                <input name="city"
+                 id = "searchPlace"
+                 placeholder="City"
+                 type="text"
+                 onChange={this.handleChange}
+                 />
+               </div>
+              <div className="col s5 white-text">
+                <input name="searchDate"
+                 type="date"
+                 onChange={this.handleChange}
+                 />
+              </div>
+              <button className="col s2 btn waves-effect waves-light blue-grey darken-1"
+              onClick = {this.handleSearch}> 검색 </button>
             </div>
-          <button className="col s2 btn waves-effect waves-light red lighten-3"
-          onClick = {this.handleSearch}> 검색 </button>
-           </div>
            </div>
         );
     }

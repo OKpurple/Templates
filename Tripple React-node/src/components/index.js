@@ -1,4 +1,5 @@
 import Header from './Header';
+import Footer from './Footer';
 import LoginForm from './LoginForm';
 import SearchForm from './SearchForm';
 import GoogleMap from './GoogleMap';
@@ -14,6 +15,8 @@ import MyGuide from './MyGuide';
 import MyReservedTravel from './MyReservedTravel';
 import ProgramDetailContents from './ProgramDetailContents';
 import ProgramDetailGuideInfo from './ProgramDetailGuideInfo';
+import RecommendProgram from './RecommendProgram';
+import NewerProgram from './NewerProgram';
 
-export { Header, LoginForm, SearchForm,GuideCardItem,GoogleMap,RoutesPlan ,MeetingPlace,
+export {NewerProgram, RecommendProgram,Header,Footer, LoginForm, SearchForm,GuideCardItem,GoogleMap,RoutesPlan ,MeetingPlace,
   InputProgram,InputGuide, SideNav, Profile, RegisterForm, MyGuide, MyReservedTravel, ProgramDetailContents, ProgramDetailGuideInfo};

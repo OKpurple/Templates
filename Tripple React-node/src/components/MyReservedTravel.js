@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Tabs, Tab, TabContainer, TabContent, TabPane } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
+import {NavLink} from 'react-router-dom';
 
 const propTypes = {
 };
@@ -33,7 +34,8 @@ class MyReservedTravel extends Component {
                     <p>{program.meeting_date} | {program.start_time} - {program.end_time}</p>
                     <p><strong>₩{program.price}</strong> {program.title}</p>
                     <br></br>
-                    <a href="#" className="blue-text">상세보기</a>
+                    <NavLink to='ProgramDetail' className="blue-text">상세보기</NavLink>
+
                     {program.status > 0 ? confirmStatus : waitStatus}
 
                   </div>

@@ -8,7 +8,7 @@ const defaultProps = {
 };
 /*<span className="card-title black-text">내가 예약한 여행</span>*/
 const carouselInstance = (
-  <Carousel >
+  <Carousel>
     <Carousel.Item>
       <img width={620} src="http://lorempixel.com/300/200/nightlife/2"/>
       <Carousel.Caption>

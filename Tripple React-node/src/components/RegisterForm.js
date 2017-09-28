@@ -50,17 +50,17 @@ class RegisterForm extends Component {
                </div>
 
 
-             <button className="col s12 btn waves-effect waves-light red lighten-3">회원가입 </button>
+             <button className="col s12 btn waves-effect waves-light blue-grey lighten-1">회원가입 </button>
 
          </div>
      </div>)
 
         return(
 
-          <div className="container auth">
+          <div className="container auth Form" >
 
              <div className="card">
-                 <div className="header pink white-text center">
+                 <div className="header white-text center black">
                      <div className="card-content">회원가입</div>
                  </div>
                  {registerView}

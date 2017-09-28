@@ -60,7 +60,7 @@ class Header extends Component {
             let islogined = true;
         return(
 
-          <nav className="nav-extended ">
+          <nav className="nav-extended blue-grey darken-3">
 
 
               <div className="nav-wrapper">
