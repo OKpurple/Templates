@@ -11,10 +11,11 @@ class SearchResult extends Component {
         super(props);
     }
 
-    componentDidMount(){
-      console.log("searchResult Start!")
+
+    componentWillMount(){
       let city = this.props.match.params.city;
       let searchDate = this.props.match.params.searchDate;
+
       this.props.searchProgramListRequest(city, searchDate).then(
         ()=>{
         console.log(this.props.searchProgramData);
@@ -29,7 +30,7 @@ class SearchResult extends Component {
         }
 
         return(
-          <div className="container ">
+          <div className="container">
 
             <div className="row">
               <h3>도시, 일정 검색 결과</h3>
@@ -45,7 +46,6 @@ class SearchResult extends Component {
 
 const mapStateToProps = (state) => {
     return {
-
         searchProgramData: state.Program.searchList.data
     };
 };

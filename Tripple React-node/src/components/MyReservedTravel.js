@@ -18,6 +18,10 @@ class MyReservedTravel extends Component {
       const confirmStatus = (<p className="right green-text">참여확정</p>)
 
       const myReservedList = (data)=>{
+        if(data.length===0){
+          return;
+        }else{
+
         return data.map((program,i)=>{
           return(
             <div>
@@ -34,7 +38,7 @@ class MyReservedTravel extends Component {
                     <p>{program.meeting_date} | {program.start_time} - {program.end_time}</p>
                     <p><strong>₩{program.price}</strong> {program.title}</p>
                     <br></br>
-                    <NavLink to='ProgramDetail' className="blue-text">상세보기</NavLink>
+                    <NavLink to='/ProgramDetail' className="blue-text">상세보기</NavLink>
 
                     {program.status > 0 ? confirmStatus : waitStatus}
 
@@ -48,7 +52,7 @@ class MyReservedTravel extends Component {
           )
         })
       }
-
+    }
 
       // const myReservedTravel_yet = (
       //

@@ -9,12 +9,22 @@
   background-size:100% 100%;
 }
 
+.marginHorizontal{
+  margin-top:1%;
+  margin-bottom:1%;
+}
+
+.textfield{
+  width:100%;
+  height:10%;
+}
+
 /*Google Map*/
 #map{
-
-  height:500px;
-
+  height:60vh;
 }
+
+
 
 
 
@@ -80,6 +90,12 @@ body {
 .marginL{
   margin-left: 20px;
 }
+
+.marginT{
+  margin-top :10vh;
+
+}
+
 .marginR{
   margin-right: 20px;
 }
@@ -90,15 +106,8 @@ body {
 .marginB{
   margin-bottom: 40px;
 }
-.marginHorizontal{
-  margin-bottom: 40px;
-  margin-top: 40px;
-}
 
-.marginT{
-  margin-top :20px;
 
-}
 
 .cardContainer{
   padding-top : 100px;

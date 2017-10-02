@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { NewerProgram,SearchForm, GuideCardItem,RecommendProgram } from '../components';
 import {Carousel} from 'react-bootstrap';
 
+
 const propTypes = {
 };
 const defaultProps = {
@@ -30,7 +31,8 @@ class Home extends Component {
 
     HandleSearch(city, searchDate){
 
-      this.props.history.push(`/SearchResult/`+city+`/`+searchDate);
+      //this.props.history.push(`/SearchResult/`+city+`/`+searchDate);
+      this.props.history.push('/SearchResult');
     }
 
     render() {

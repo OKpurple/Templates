@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink,reactDOMNode  } from 'react-router-dom';
+
 const propTypes = {
 };
 const defaultProps = {
@@ -7,13 +8,10 @@ const defaultProps = {
 class GuideCardItem extends Component {
     constructor(props) {
         super(props);
-
     }
 
 
     render() {
-
-
         return(
 
           <div className="col s3">
@@ -27,8 +25,8 @@ class GuideCardItem extends Component {
                 <span>₩ {this.props.data.price}</span>
                 <span>{this.props.data.title}</span>
                 <br></br>
-                <NavLink to="/ProgramDetail" className="blue-text left">상세보기</NavLink>
-                <a className="blue-text" onClick="handleDip">찜하기</a>
+                <NavLink to='/ProgramDetail' className="blue-text left"><p>상세보기</p></NavLink>
+                <a className="blue-text">찜하기</a>
                 <p className="right black-text"> 평점 <span> 3.5</span> 점</p>
               </div>
             </div>

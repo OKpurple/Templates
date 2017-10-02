@@ -5,19 +5,15 @@ import { connect } from 'react-redux';
 import { Tabs, Tab, TabContainer, TabContent, TabPane } from 'react-bootstrap';
 import {MyGuide, MyReservedTravel} from '../components/';
 
-
-
-
 class MyTrip extends Component {
     constructor(props) {
         super(props);
     }
 
-    componentDidMount(){
+    componentWillMount(){
       console.log(this.props.currentUser);
            this.props.programListRequest(true,"new",this.props.currentUser).then(
                () => {
-
                    console.log(this.props.programData);
                }
            );
@@ -32,8 +28,7 @@ class MyTrip extends Component {
 
     render() {
         return(
-          <div className='row'>
-            <SideNav />
+          <div className='row col s9'>
             <div className="col s8 ">
               <h3> 나의 여행 페이지</h3>
 

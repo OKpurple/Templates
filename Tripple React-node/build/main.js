@@ -43,7 +43,7 @@ app.use((0, _expressSession2.default)({
     saveUninitialized: true
 }));
 
-app.use('/images', _express2.default.static('images'));
+app.use('/images', _express2.default.static(_path2.default.join(__dirname, './images')));
 app.use('/', _express2.default.static(_path2.default.join(__dirname, './../public')));
 
 app.listen(port, function () {

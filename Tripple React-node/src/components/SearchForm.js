@@ -21,9 +21,12 @@ class SerachForm extends Component {
         this.setState(nextState);
     }
 
-    handleSearch(){
+    handleSearch() {
+      //console.log(document.getElementById('searchPlace').value);
+      //console.log(document.getElementById('searchDate').value);
       this.props.onSearch(this.state.city,this.state.searchDate);
     }
+
 
     componentDidMount(){
       const script = document.createElement('script');
@@ -37,19 +40,21 @@ class SerachForm extends Component {
                         var searchBox = new google.maps.places.Autocomplete(inputGoogleMap,options);
 
                         searchBox.addListener('place_changed', function(){
-                          inputGoogleMap.value =
+
 
 
                         });
                       }
 
-      `
+                    `
 
       const script1 = document.createElement('script');
       script1.src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5PIOp7E83jz9-EtbthhehmGKL9AAWeNU&libraries=places&callback=initAutocomplete"
       script1.async = true;
       this.instance.appendChild(script);
-      //this.instance.appendChild(script1);
+      this.instance.appendChild(script1);
+
+
     }
 
     render() {
@@ -60,6 +65,7 @@ class SerachForm extends Component {
             <div className="row">
               <div className="col s5">
                 <input name="city"
+                 className = "white-text"
                  id = "searchPlace"
                  placeholder="City"
                  type="text"
@@ -68,12 +74,13 @@ class SerachForm extends Component {
                </div>
               <div className="col s5 white-text">
                 <input name="searchDate"
+                 className = "white-text"
+                 id = "searchDate"
                  type="date"
                  onChange={this.handleChange}
                  />
               </div>
-              <button className="col s2 btn waves-effect waves-light blue-grey darken-1"
-              onClick = {this.handleSearch}> 검색 </button>
+              <button className="col s2 btn waves-effect waves-light blue-grey darken-1" onClick={this.handleSearch}> 검색 </button>
             </div>
            </div>
         );

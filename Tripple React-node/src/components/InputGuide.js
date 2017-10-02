@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import {NavLink} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getProfile } from '../actions/user';
 const propTypes = {
 };
 const defaultProps = {
@@ -8,64 +10,85 @@ class InputGuide extends Component {
     constructor(props) {
         super(props);
     }
+    componentWillMount(){
+      this.props.getProfile(this.props.currentUser);
+    }
+
+
     render() {
         return(
-          <div>
-          <div className="row">
-            <form className="col s8 offset-s2">
-              <h5>가이드(본인) 정보</h5>
+          <div className='col s6 offset-s1'>
+              <h4>가이드 정보</h4>
                 <div className="row">
-                  <div className='input-field col s2'>
-                    <input disabled id="name" type="text" className="validate"/>
-                    <label for="name" className='purple-text'>이름</label>
+                  <div className="input-field col s5">
+                    <input defaultValue={this.props.profileInfo.firstName} id="first_name" type="text" className="validate"/>
+                    <label className='active' htmlFor="first_name">First Name</label>
                   </div>
-                  <div className="input-field col s4">
-                    <input id="first_name" type="text" className="validate"/>
-                    <label for="first_name">First Name</label>
-                  </div>
-                  <div className="input-field col s6">
-                    <input id="last_name" type="text" className="validate"/>
-                    <label for="last_name">Last Name</label>
+                  <div className="input-field col s7">
+                    <input defaultValue={this.props.profileInfo.lastName} id="last_name" type="text" className="validate"/>
+                    <label className='active' htmlFor="last_name">Last Name</label>
                   </div>
                 </div>
-                <div className="row">
-                  <div className='input-field col s2'>
-                    <input disabled id="phone" type="text" className="validate"/>
-                    <label for="phone" className='purple-text'>전화번호</label>
-                  </div>
-                  <div className="input-field col s10">
-                    <input id="phonenum" type="password" className="validate"/>
-                    <label for="phonenum">연락 가능한 전화번호를 적어주세요.</label>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className='input-field col s2'>
-                    <input disabled id="email" type="text" className="validate"/>
-                    <label for="email" className='purple-text'>Email</label>
-                  </div>
-                  <div className="input-field col s10">
-                    <input id="emailValue" type="email" className="validate"/>
-                    <label for="emailValue">Tripple@exam.com</label>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className='input-field col s2'>
-                    <input disabled id="lang" type="text" className="validate"/>
-                    <label for="lang" className='purple-text'>Language</label>
-                  </div>
-                  <div className="input-field col s10">
-                    <input id="langValue" type="email" className="validate"/>
-                    <label for="langValue">한국어, 영어, ...</label>
-                  </div>
-                </div>
-            </form>
 
-          </div>
+
+
+
+                <div className="row">
+                  <div className="input-field col s12">
+                    <input defaultValue={this.props.profileInfo.phone} id="phonenum" type="text" className="validate"/>
+                    <label className='active' htmlFor="phonenum">연락 가능한 전화번호를 적어주세요.</label>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="input-field col s12">
+                    <input defaultValue={this.props.profileInfo.email} id="emailValue" type="email" className="validate"/>
+                    <label className='active' htmlFor="emailValue">Tripple@exam.com</label>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className='col s12'>
+                   <span>
+                     <input type="checkbox"  id="korean" defaultChecked="checked" />
+                     <label htmlFor="korean" >한국어</label>
+                   </span>
+
+                   <span style={{margin:'1cm'}}>
+                     <input type="checkbox" id="english" />
+                     <label htmlFor="english">영어</label>
+                   </span>
+                   <span>
+                     <input type="checkbox" id="japanese" />
+                     <label htmlFor="japanese">일본어</label>
+                   </span>
+                   <span style={{margin:'1cm'}}>
+                     <input type="checkbox" id="etc" />
+                     <label htmlFor="etc">기타</label>
+                   </span>
+                   </div>
+                </div>
+
+
+
 
         </div>
         );
     }
 }
-InputGuide.propTypes = propTypes;
-InputGuide.defaultProps = defaultProps;
-export default InputGuide;
+const mapStateToProps = (state) => {
+    return {
+        currentUser : state.Login.status.currentUser,
+        status: state.User.userProfile.status,
+        profileInfo : state.User.data
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getProfile: (user_id) => {
+            return dispatch(getProfile(user_id));
+        }
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(InputGuide);

@@ -28,7 +28,7 @@ const buttonsInstance = (
 
 
 const buttonGroupInstance = (
-  
+
   <ButtonGroup>
 
     <DropdownButton title="Dropdown" id="bg-nested-dropdown">
@@ -51,8 +51,8 @@ class Review extends Component {
 
 
         return(
-          <div className='row'>
-            <SideNav />
+          <div className='row col s9'>
+
             <div className="col s8">
               <h3> 후기페이지</h3>
 

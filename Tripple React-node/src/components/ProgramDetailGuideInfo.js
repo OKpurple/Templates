@@ -17,7 +17,7 @@ class ProgramDetailGuideInfo extends Component {
         return(
 
           <div className="col s4 ">
-              <div className="card red lighten-3">
+              <div className="card teal blue-grey darken-3">
                 <div className="card-content white-text center-align">
                       <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" />
 

@@ -10,10 +10,12 @@ import CreatePDetail from './CreatePDetail';
 import Program from './Program';
 import TravelList from './TravelList';
 import MyPage from './MyPage';
+import ProfileEdit from './ProfileEdit';
 import MyTrip from './MyTrip';
 import Review from './Review';
 import WishList from './WishList';
 import ProgramDetail from './ProgramDetail';
 import Test from './Test';
-export { Test,App, Home, Login, Register,SearchResult, CreateProgram,CreateMeetPlace,CreateDetail,
-         CreatePDetail,Program, TravelList, MyPage, MyTrip, Review, WishList, ProgramDetail};
+import Profile from './Profile'
+export { Profile,Test,App, Home, Login, Register,SearchResult, CreateProgram,CreateMeetPlace,CreateDetail,
+         CreatePDetail,Program, TravelList, MyPage,ProfileEdit, MyTrip, Review, WishList, ProgramDetail};

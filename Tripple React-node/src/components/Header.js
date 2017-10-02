@@ -21,17 +21,13 @@ class Header extends Component {
 
             const registerButton = (
                   <li>
-                      <a>
                           <NavLink to = "/Register"><i className="material-icons">person_outline</i></NavLink>
-                      </a>
                   </li>
               );
 
               const myPageButton = (
                     <li>
-                        <a>
                             <NavLink to = "/MyPage"><i className="material-icons">person_pin</i></NavLink>
-                        </a>
                     </li>
                 );
 
@@ -39,9 +35,7 @@ class Header extends Component {
 
             const loginButton = (
                   <li>
-                      <a>
                           <NavLink to = "/login"><i className="material-icons">vpn_key</i></NavLink>
-                      </a>
                   </li>
               );
 
@@ -61,23 +55,15 @@ class Header extends Component {
         return(
 
           <nav className="nav-extended blue-grey darken-3">
-
-
               <div className="nav-wrapper">
                   <NavLink to="/" className="brand-logo marginL" activeClassName="active">Tripple</NavLink>
-
-
-
                     <div className="right">
-
                         <ul>
-
                             { this.props.isLoggedIn ? myPageButton : registerButton }
                         </ul>
                     </div>
 
                   <div className="right">
-
                       <ul>
                           { this.props.isLoggedIn ? logoutButton : loginButton }
                       </ul>

@@ -12,10 +12,17 @@ const initialState = {
         isLast: false
     },
     applyList:{
+        status:'INIT',
         data: []
     },
     searchList:{
       data: []
+    },
+    createProgramInfo:{
+      status :'INIT',
+      routesData:[],
+      meetingInfo: Object,
+      programInfo:Object
     }
 };
 
@@ -56,12 +63,49 @@ export default function Program(state, action) {
               data:{$set: action.data}
             }
           });
+        case types.APPLY_PROGRAM_LIST_FAILURE:
+          return update(state, {
+            applyList:{
+              status:{$set: "FAILURE"}
+            }
+          });
         case types.SEARCH_PROGRAM_LIST_SUCCESS:
+
           return update(state, {
             searchList:{
               data:{$set: action.data}
             }
           });
+        case types.CREATE_ROUTES:
+          return update(state, {
+            createProgramInfo:{
+              routesData:{$set: action.data}
+            }
+          });
+        case types.CREATE_MEETING_INFO:
+          return update(state, {
+            createProgramInfo:{
+              meetingInfo:{$set: action.data}
+            }
+          });
+        case types.CREATE_PROGRAM_INFO:
+          return update(state, {
+            createProgramInfo:{
+              programInfo:{$set: action.data}
+            }
+        });
+        case types.CREATE_PROGRAM_SUCCESS:
+          return update(state, {
+            createProgramInfo:{
+              status:{$set: "SUCCESS"}
+            }
+        });
+        case types.CREATE_PROGRAM_FAILURE:
+          return update(state, {
+            createProgramInfo:{
+              status:{$set: "FAILURE"}
+            }
+        });
         default:
             return state;
     }

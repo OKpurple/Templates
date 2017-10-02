@@ -58,11 +58,50 @@ export function loginRequest(login_id, password) {
         return axios.post('/api/account/signin', { login_id, password })
         .then((response) => {
             // SUCCEED
-            
+
             if(response.data.meta.code === -10){
               console.log("INVALID_REQUEST");
             }else{
               console.log("loginaction success"+response.data.data.user_id);
+              dispatch(loginSuccess(response.data.data.user_id));
+            }
+        }).catch((error) => {
+            // FAILED
+            dispatch(loginFailure());
+        });
+    };
+}
+
+
+
+
+
+
+
+export function registFailure() {
+    return {
+        type: AUTH_LOGIN_FAILURE
+    };
+}
+
+export function registRequest(data) {
+    return (dispatch) => {
+        // Inform Login API is starting
+
+        let loginId = data.loginId;
+        let password = data.password;
+        let firstName = data.firstName;
+        let lastName = data.lastName;
+
+        // API REQUEST
+        return axios.post('/api/account/signup', {loginId,password,firstName,lastName  })
+        .then((response) => {
+            // SUCCEED
+
+            if(response.data.meta.code === -10){
+              console.log("INVALID_REQUEST");
+            }else{
+              console.log("regist success"+response.data.data.user_id);
               dispatch(loginSuccess(response.data.data.user_id));
             }
         }).catch((error) => {

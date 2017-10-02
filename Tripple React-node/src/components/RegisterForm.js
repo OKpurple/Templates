@@ -7,6 +7,18 @@ const defaultProps = {
 class RegisterForm extends Component {
     constructor(props) {
         super(props);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleRegist = this.handleRegist.bind(this);
+    }
+    handleChange(e) {
+        let nextState = {};
+        nextState[e.target.name] = e.target.value;
+        console.log(nextState);
+        this.setState(nextState);
+    }
+
+    handleRegist(){
+      this.props.onRegist(this.state)
     }
     render() {
 
@@ -15,7 +27,8 @@ class RegisterForm extends Component {
              <div className="input-field col s12 username">
                  <label>Email</label>
                  <input
-                 name="login_id"
+                 onChange={this.handleChange}
+                 name="loginId"
                  type="text"
                  className="validate"
                  />
@@ -24,6 +37,7 @@ class RegisterForm extends Component {
              <div className="input-field col s12">
                  <label>Password</label>
                  <input
+                 onChange={this.handleChange}
                  name="password"
                  type="password"
                  className="validate"
@@ -34,6 +48,7 @@ class RegisterForm extends Component {
                <div className="input-field col s6">
                    <label>FirstName</label>
                    <input
+                   onChange={this.handleChange}
                    name="firstName"
                    type="text"
                    className="validate"
@@ -43,6 +58,7 @@ class RegisterForm extends Component {
                <div className="input-field col s6">
                    <label>LastName</label>
                    <input
+                   onChange={this.handleChange}
                    name="lastName"
                    type="text"
                    className="validate"
@@ -50,7 +66,7 @@ class RegisterForm extends Component {
                </div>
 
 
-             <button className="col s12 btn waves-effect waves-light blue-grey lighten-1">회원가입 </button>
+             <button className="col s12 btn waves-effect waves-light blue-grey lighten-1" onClick = {this.handleRegist}>회원가입 </button>
 
          </div>
      </div>)

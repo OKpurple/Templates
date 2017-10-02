@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Footer,Header } from '../components';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 import {Test,Login, Home, Register,SearchResult,CreateProgram,
   CreateMeetPlace,CreateDetail,CreatePDetail,Program, TravelList, MyPage, MyTrip, Review, WishList, ProgramDetail} from '../containers';
 import {logoutRequest} from '../actions/login';
@@ -70,8 +70,6 @@ class App extends Component {
                           <Route path="/Program" component={Program}/>
                           <Route path="/TravelList" component={TravelList}/>
                           <Route path="/MyPage" component={MyPage}/>
-                          <Route path="/MyTrip" component={MyTrip}/>
-                          <Route path="/Review" component={Review}/>
                           <Route path="/WishList" component={WishList}/>
                           <Route path="/ProgramDetail" component={ProgramDetail}/>
                       </Switch>
