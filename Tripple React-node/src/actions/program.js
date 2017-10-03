@@ -100,27 +100,29 @@ export function createProgramRequest(data,currentUser) {
       var address = data.meetingInfo.address;
       var lng = data.meetingInfo.lng;
       var lat = data.meetingInfo.lat;
-      var language = data.programInfo.language;
+
       var content = '내용이 아직 없음..'
       var routes = data.routesData;
       var category = data.programInfo.category;
-
+      // {
+      //   title,
+      //   startTime,
+      //   endTime,
+      //   participant,
+      //   address,
+      //   lng,
+      //   lat,
+      //   content,
+      //   routes,
+      //   user_id,
+      //   category
+      // }
       var user_id = currentUser;
+      console.log('create action');
+      var body = Object.assign(data.programInfo,{routes:data.routesData},data.meetingInfo,{user_id:user_id});
+
         // API REQUEST
-        return axios.post('/api/programs', {
-          title,
-          startTime,
-          endTime,
-          participant,
-          address,
-          lng,
-          lat,
-          language,
-          content,
-          routes,
-          user_id,
-          category
-        }).then((response) => {
+        return axios.post('/api/programs',body ).then((response) => {
             // SUCCEED
 
             if(response.data.meta.code === -10){

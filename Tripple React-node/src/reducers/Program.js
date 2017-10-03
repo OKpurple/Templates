@@ -22,7 +22,9 @@ const initialState = {
       status :'INIT',
       routesData:[],
       meetingInfo: Object,
-      programInfo:Object
+      programInfo:{
+        category:[]
+      }
     }
 };
 
@@ -97,7 +99,12 @@ export default function Program(state, action) {
         case types.CREATE_PROGRAM_SUCCESS:
           return update(state, {
             createProgramInfo:{
-              status:{$set: "SUCCESS"}
+              status:{$set: "SUCCESS"},
+              meetingInfo:{$set:{}},
+              programInfo:{$set:{
+                category:[]
+              }},
+              routesData:{$set:[]}
             }
         });
         case types.CREATE_PROGRAM_FAILURE:

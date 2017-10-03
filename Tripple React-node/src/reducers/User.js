@@ -5,7 +5,14 @@ const initialState = {
     userProfile:{
       status:'INIT'
     },
-    data:{}
+    data:{
+      firstName:"firstName",
+      lastName:"lastName",
+      email:"ooo@gamil.com",
+      phone:'01022232223',
+      nation:'한국',
+      sex:'남자'
+    }
 };
 
 export default function Login(state = initialState, action) {
@@ -24,6 +31,19 @@ export default function Login(state = initialState, action) {
                     status: { $set: 'FAILURE' }
                 }
             });
+        case types.UPDATE_PROFILE_SUCCESS:
+            return update(state, {
+                userProfile: {
+                    status: { $set: 'SUCCESS' }
+                }
+            });
+        case types.UPDATE_PROFILE_FAILURE:
+            return update(state, {
+                userProfile: {
+                    status: { $set: 'FAILURE' }
+                }
+            });
+
         default:
             return state;
     }

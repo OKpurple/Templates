@@ -18,46 +18,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var router = _express2.default.Router();
 
-router.post('/', function (req, res) {
-  console.log(req.body);
-
-  var user_id = req.body.user_id;
-  var title = req.body.title;
-  var address = req.body.address;
-  var start_time = req.body.startTime;
-  var end_time = req.body.endTime;
-  var lng = req.body.lng;
-  var lat = req.body.lat;
-  var participant_max = req.body.participant;
-  var content = req.body.content;
-  var img_url = req.body.img_url;
-  var languages = req.body.language;
-  var themes = req.body.category;
-  (0, _utils.dbConnect)(res).then(function (conn) {
-    (0, _utils.query)(conn, res, 'INSERT INTO programs(user_id, title,city,start_time,end_time,lat,lng,participant_max,themes,content,img_url,languages)\n      VALUES(?,?,?,?,?,?,?,?,?,?,?,?)', [user_id, title, city, start_time, end_time, lat, lng, participant_max, themes, content, img_url, languages]).then(function (result) {
-      conn.release();
-      res.json(_utils.SUCCESS);
-    });
-  });
-});
-
-//내 프로그램 목록
-router.get('/:user_id', function (req, res) {
-  var user_id = req.params.user_id;
-  console.log(user_id + "get programs");
-  (0, _utils.dbConnect)(res).then(function (conn) {
-    (0, _utils.query)(conn, res, 'SELECT * FROM programs WHERE user_id = ?', [user_id]).then(function (programList) {
-      conn.release();
-      res.json((0, _utils.toRes)(_utils.SUCCESS, {
-        data: programList
-      }));
-    });
-  });
-});
-
 router.get('/op/:user_id', function (req, res) {
   var user_id = req.params.user_id;
+
   console.log(user_id + "get programs");
+
   (0, _utils.dbConnect)(res).then(function (conn) {
     (0, _utils.query)(conn, res, 'SELECT * FROM programs WHERE user_id = ?', [user_id]).then(function (programList) {
       //비동기에 scope 관련  -> 좀 더 좋은 방법생각하기
@@ -78,6 +43,55 @@ router.get('/op/:user_id', function (req, res) {
         conn.release();
         res.json((0, _utils.toRes)(_utils.SUCCESS, { data: result }));
       });
+    });
+  });
+});
+
+router.post('/', function (req, res) {
+  console.log(req.body);
+
+  var user_id = req.body.user_id;
+  var title = req.body.title;
+  var address = req.body.address;
+  var start_time = req.body.startTime;
+  var end_time = req.body.endTime;
+  var lng = req.body.lng;
+  var lat = req.body.lat;
+  var participant_max = req.body.participant;
+  var content = req.body.content;
+  var img_url = req.body.img_url;
+  var category = req.body.category;
+  var themes = "";
+  category.map(function (theme) {
+    console.log(theme);
+    themes += theme + ';';
+  });
+  console.log(themes);
+
+  if (img_url === undefined) {
+    img_url = "http://127.0.0.1:4000/images/test.png";
+  }
+
+  var routes = req.body.routes;
+
+  (0, _utils.dbConnect)(res).then(function (conn) {
+    (0, _utils.query)(conn, res, 'INSERT INTO programs(user_id, title,address,start_time,end_time,lat,lng,participant_max,themes,content,img_url)\n      VALUES(?,?,?,?,?,?,?,?,?,?,?)', [user_id, title, address, start_time, end_time, lat, lng, participant_max, themes, content, img_url]).then(function (result) {
+      conn.release();
+      res.json(_utils.SUCCESS);
+    });
+  });
+});
+
+//내 프로그램 목록
+router.get('/:user_id', function (req, res) {
+  var user_id = req.params.user_id;
+  console.log(user_id + "get programs");
+  (0, _utils.dbConnect)(res).then(function (conn) {
+    (0, _utils.query)(conn, res, 'SELECT * FROM programs WHERE user_id = ?', [user_id]).then(function (programList) {
+      conn.release();
+      res.json((0, _utils.toRes)(_utils.SUCCESS, {
+        data: programList
+      }));
     });
   });
 });

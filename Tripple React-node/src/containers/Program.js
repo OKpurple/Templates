@@ -13,6 +13,7 @@ class Program extends Component {
     handleCreateProgram(){
       this.props.createProgramRequest(this.props.cPI,this.props.currentUser).then(()=>{
         if(this.props.cPI.status === "SUCCESS"){
+          console.log(this.props.cPI.programInfo.category)
           this.props.history.push('/');
           alert("등록되었습니다.");
         }else{
@@ -34,8 +35,15 @@ class Program extends Component {
           )
         })
       }
+      const category = (data) => {
+        return data.map((item,i)=>{
+          return (<span key={i}>#{item} </span>);
+        })
+      }
 
         return(
+
+
           <div className='row'>
             <h3 className='center'>최종 확인</h3>
             <div className='col s8 offset-s1'>
@@ -43,12 +51,12 @@ class Program extends Component {
               <p>수용인원 : {this.props.cPI.programInfo.participant}</p>
               <p>모임장소 : {this.props.cPI.meetingInfo.address}</p>
               <p>모임시간 : {this.props.cPI.meetingInfo.time}</p>
-              <p>이름 : {this.props.cPI.programInfo.lastName}{this.props.cPI.programInfo.firstName}</p>
-              <p>email : {this.props.cPI.programInfo.emailValue}</p>
-              <p>핸드폰 : {this.props.cPI.programInfo.phonenum}</p>
-              <p>언어 : {this.props.cPI.programInfo.language}</p>
+              <p>이름 : {this.props.profileInfo.lastName}{this.props.profileInfo.firstName}</p>
+              <p>email : {this.props.profileInfo.email}</p>
+              <p>핸드폰 : {this.props.profileInfo.phone}</p>
+              <p>언어 : {this.props.profileInfo.languages}</p>
               <p>시간 : {this.props.cPI.programInfo.startTime}-{this.props.cPI.programInfo.endTime}</p>
-              <p>카테고리 : {this.props.cPI.programInfo.category}</p>
+              <p>카테고리 : {category(this.props.cPI.programInfo.category)}</p>
 
               <table>
                 <thead><tr>
@@ -74,6 +82,7 @@ class Program extends Component {
 const mapStateToProps = (state) => {
     return {
         cPI: state.Program.createProgramInfo,
+        profileInfo: state.User.data,
         currentUser:state.Login.status.currentUser
     };
 };

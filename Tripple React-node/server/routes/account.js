@@ -120,4 +120,38 @@ router.post('/logout', (req, res) => {
     return res.json({ sucess: true });
 });
 
+//updateProfile
+router.put('/info/:user_id',(req,res)=>{
+  console.log(req.body);
+  let user_id = req.params.user_id;
+  let firstName = req.body.firstName;
+  let lastName = req.body.lastName;
+  let email = req.body.email;
+  let phone = req.body.phone;
+  let sex = req.body.sex;
+  let language = req.body.language;
+  let nation = req.body.nation;
+  let birth = req.body.birth;
+
+  dbConnect(res).then((conn)=>{
+    query(conn,res,`
+      UPDATE users
+      SET firstName = ?, lastName = ?, email = ?, phone = ?, sex = ?, languages = ?, nation = ?, birth = ?
+      WHERE user_id = ?
+      `,[firstName,
+        lastName,
+        email,
+        phone,
+        sex,
+        language,
+        nation,
+        birth,
+        user_id
+      ]).then((result)=>{
+        conn.release();
+        res.json(SUCCESS);
+      })
+  })
+})
+
 export default router;

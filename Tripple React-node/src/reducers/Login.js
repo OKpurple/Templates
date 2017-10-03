@@ -29,7 +29,7 @@ export default function Login(state = initialState, action) {
                 },
                 status: {
                     isLoggedIn: { $set: true },
-                    currentUser: { $set: action.loginId }
+                    currentUser: { $set: action.userId }
                 }
             });
         case types.AUTH_LOGIN_FAILURE:

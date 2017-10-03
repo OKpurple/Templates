@@ -12,7 +12,7 @@ router.get('/op/:user_id',(req,res)=>{
   let user_id = req.params.user_id;
 
   console.log(user_id+"get programs");
-  
+
 
   dbConnect(res).then((conn)=>{
     query(conn,res,
@@ -44,6 +44,7 @@ router.get('/op/:user_id',(req,res)=>{
 });
 
 router.post('/',(req,res)=>{
+  console.log("createPro server")
   console.log(req.body);
 
   let user_id = req.body.user_id;
@@ -56,16 +57,24 @@ router.post('/',(req,res)=>{
   let participant_max = req.body.participant;
   let content = req.body.content;
   let img_url = req.body.img_url;
-  let languages = req.body.language;
-  let themes = req.body.category;
+  let category = req.body.category;
+  let routes = req.body.routes
+  let themes=""
+  category.map((theme)=>{
+    themes += (theme+';')
+  })
+
 
   if(img_url===undefined){
     img_url = "http://127.0.0.1:4000/images/test.png"
   }
+
+
+
   dbConnect(res).then((conn)=>{
     query(conn,res,
-      `INSERT INTO programs(user_id, title,address,start_time,end_time,lat,lng,participant_max,themes,content,img_url,languages)
-      VALUES(?,?,?,?,?,?,?,?,?,?,?,?)`,
+      `INSERT INTO programs(user_id, title,address,start_time,end_time,lat,lng,participant_max,themes,content,img_url)
+      VALUES(?,?,?,?,?,?,?,?,?,?,?)`,
       [
         user_id,
         title,
@@ -77,12 +86,29 @@ router.post('/',(req,res)=>{
         participant_max,
         themes,
         content,
-        img_url,
-        languages
+        img_url
       ]
     ).then((result)=>{
-      conn.release();
-      res.json(SUCCESS);
+
+      new Promise((resolved,rejected)=>{routes.map((route,key)=>{
+        let _title = route.placeName;
+        let _lat = route.lat;
+        let _lng = route.lng;
+        let _explanation = route.explanation;
+        let _pid = result.insertId;
+
+        query(conn,res,`
+          INSERT INTO routes(title,lat,lng,explanation,program_id) VALUES(?,?,?,?,?)`,
+          [_title,_lat,_lng,_explanation,_pid]).then((qres)=>{
+            if(key === (routes.length-1)){
+              resolved('true');
+            }
+          });
+      })
+    }).then((insertRes)=>{
+            conn.release();
+            res.json(SUCCESS);
+       })
     });
   });
 });

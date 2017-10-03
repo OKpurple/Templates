@@ -16,7 +16,8 @@ import ProgramDetailContents from './ProgramDetailContents';
 import ProgramDetailGuideInfo from './ProgramDetailGuideInfo';
 import RecommendProgram from './RecommendProgram';
 import NewerProgram from './NewerProgram';
+import GuideInfo from './GuideInfo';
+import GuideInfoDisabled from './GuideInfoDisabled';
 
-
-export { NewerProgram, RecommendProgram,Header,Footer, LoginForm, SearchForm,GuideCardItem,GoogleMap,
+export { GuideInfoDisabled,GuideInfo,NewerProgram, RecommendProgram,Header,Footer, LoginForm, SearchForm,GuideCardItem,GoogleMap,
   InputProgram,InputGuide, SideNav, RegisterForm, MyGuide, MyReservedTravel, ProgramDetailContents, ProgramDetailGuideInfo};

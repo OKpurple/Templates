@@ -19,10 +19,10 @@ export function login() {
     };
 }
 
-export function loginSuccess(loginId) {
+export function loginSuccess(userId) {
     return {
         type: AUTH_LOGIN_SUCCESS,
-        loginId
+        userId
     };
 }
 
@@ -101,8 +101,8 @@ export function registRequest(data) {
             if(response.data.meta.code === -10){
               console.log("INVALID_REQUEST");
             }else{
-              console.log("regist success"+response.data.data.user_id);
-              dispatch(loginSuccess(response.data.data.user_id));
+              console.log("regist success"+response.data.data.userId);
+              dispatch(loginSuccess(response.data.data.userId));
             }
         }).catch((error) => {
             // FAILED
