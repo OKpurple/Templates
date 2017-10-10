@@ -15,15 +15,17 @@ class CreateMeetPlace extends Component {
       var time = document.getElementById('meetingTime').value;
       var coordi = document.getElementById('meetingAddress').coordi;
 
-      var meetingInfo = new Object();
-      meetingInfo.time = document.getElementById('meetingTime').value;
-      meetingInfo.address = document.getElementById('meetingAddress').innerText;
-      meetingInfo.lng = coordi.lng();
-      meetingInfo.lat = coordi.lat();
 
       if(place === "" || time ===""){
         alert('모임 장소와 시간을 모두 입력하세요.');
       }else{
+
+        var meetingInfo = new Object();
+        meetingInfo.time = document.getElementById('meetingTime').value;
+        meetingInfo.address = document.getElementById('meetingAddress').innerText;
+        meetingInfo.lng = coordi.lng();
+        meetingInfo.lat = coordi.lat();
+
       this.props.createMeetingInfo(meetingInfo);
       this.props.history.push('/CreateDetail');
       }
@@ -31,8 +33,9 @@ class CreateMeetPlace extends Component {
     }
 
     componentWillMount(){
-      var str = JSON.stringify(this.props.routesData);
-      console.log("compoWillMount" + str);
+
+      console.log("CreateMeetPlace compoWillMount");
+      console.log(this.props.routesData)
     }
 
     componentDidMount(){
@@ -205,9 +208,9 @@ class CreateMeetPlace extends Component {
 
 
 
-                <div className='col s8 offset-s2'>
+                <div className='col s9 offset-s2'>
                   <button className="btn right marginT waves-effect waves-light red lighten-3" onClick={this.handleNext}>다음</button>
-                  <Link to='/CreateProgram'><button className="btn right marginT waves-effect waves-light red lighten-3">이전</button></Link>
+                  <Link to='/CreatePDetail'><button className="btn right marginT waves-effect waves-light red lighten-3">이전</button></Link>
                 </div>
               </div>
             </div>

@@ -13,25 +13,29 @@ class Profile extends Component {
         super(props);
     }
     componentWillMount(){
-      console.log("current=" +this.props.currentUser);
-        this.props.getProfile(this.props.currentUser);
+
+
+        this.props.getProfile(this.props.currentUser).then(()=>{
+            console.log('get Profile');
+          console.log(this.props.profileInfo)
+        })
     }
     render() {
 
 
 
         return(
-          <div className='col s9'>
-              <div className='row '>
-                  <div className="col s2 offset-s1">
-                      <h2>나의 프로필</h2>
-                  </div>
+          <div>
+              <div className='row'>
+                <div className='cos s9'><h2>나의 프로필</h2></div>
               </div>
 
-              <GuideInfo profileInfo = {this.props.profileInfo}/>
+              <div className='row'>
+                <GuideInfo profileInfo = {this.props.profileInfo}/>
+              </div>
 
               <div className='row'>
-                <div className= 'col s1 offset-s6'>
+                <div className= 'col s1 offset-s8'>
                   <NavLink to='/MyPage/ProfileEdit'><button className="btn right marginT waves-effect waves-light green lighten-3">수정</button></NavLink>
                 </div>
               </div>

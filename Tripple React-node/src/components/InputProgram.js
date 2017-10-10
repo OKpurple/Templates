@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {NavLink} from 'react-router-dom';
+import axios from 'axios';
 //import TimePicker from 'material-ui/TimePicker';
 // import jQuery from "jquery";
 // window.$ = window.jQuery = jQuery;
@@ -11,7 +12,25 @@ const defaultProps = {
 class InputProgram extends Component {
     constructor(props) {
         super(props);
+
+        this.handleImgFile = this.handleImgFile.bind(this);
     }
+
+    handleImgFile(e){
+      var img = new Image();
+      img.src = URL.createObjectURL(e.target.files[0]);
+      img.width = 500;
+      img.height =400;
+      this.mt.appendChild(img);
+
+      var formData = new FormData();
+      var myData = document.getElementById('program_img').files[0];
+
+      formData.append("program_img",myData);
+
+      this.props.handleImg(formData);
+    }
+
 
     componentDidMount(){
        this.$el = $(this.el);
@@ -64,11 +83,6 @@ class InputProgram extends Component {
                       <input defaultValue={this.props.cPI.startTime} id="startTime" type="text" className="timepicker" ref={el => this.el = el}/>
                       <label className='active' htmlFor="startTime" >시작 시간</label>
                     </div>
-
-                    <div className="input-field col s6">
-                      <input defaultValue={this.props.cPI.endTime} id="endTime" type="text" className="timepicker" ref={el => this.el1 = el}/>
-                      <label className='active' htmlFor="endTime" >종료 시간</label>
-                    </div>
                   </div>
 
                   <div className="row">
@@ -77,10 +91,22 @@ class InputProgram extends Component {
                       <label className='active' htmlFor="participant" >최대 인원</label>
                     </div>
                   </div>
+
+                  <div className="row">
+                    <div className="input-field col s5 kor-sign">
+                      <input defaultValue={this.props.cPI.price} step='1000' id="price" type='number' className="validate"/>
+                      <label className='active' htmlFor="price" >참가비</label>
+                    </div>
+                  </div>
+
                   <div className='row'>
                     <div id ="category" className="chips chips-placeholder col s12" ref = {el => this.cate = el}></div>
                   </div>
 
+                  <div className='row' ref={ mt => this.mt = mt}>
+                    <label className='col s1'>프로그램 대표사진</label>
+                    <input className='col s11' encType="multipart/form-data" type='file' id='program_img' name='program_img' onChange={this.handleImgFile}/>
+                  </div>
              </div>
 
 

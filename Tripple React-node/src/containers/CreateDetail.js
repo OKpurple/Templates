@@ -10,12 +10,20 @@ import {
 class CreateDetail extends Component {
     constructor(props) {
         super(props);
+        this.state={
+          formData:''
+        }
         this.handleNext = this.handleNext.bind(this);
+        this.handleImg = this.handleImg.bind(this);
     }
 
     componentDidMount(){
       console.log(this.props.createProgramInfo.meetingInfo.address);
       console.log(this.props.createProgramInfo.routesData);
+    }
+
+    handleImg(data){
+      this.setState({formData : data});
     }
 
 
@@ -32,19 +40,24 @@ class CreateDetail extends Component {
       programInfo.category = category;
       programInfo.title = document.getElementById('title').value;
       programInfo.startTime = document.getElementById('startTime').value;
-      programInfo.endTime = document.getElementById('endTime').value;
       programInfo.participant = document.getElementById('participant').value;
-      console.log(category)
+      programInfo.price = document.getElementById('price').value;
+      programInfo.formData = this.state.formData;
 
-      this.props.updateProgramInfo(programInfo);
-      this.props.history.push('/CreatePDetail');
+      if(programInfo.title.trim = ''){
+        alert('제목 입력')
+      }else{
+
+        this.props.updateProgramInfo(programInfo);
+        this.props.history.push('/Program');
+      }
     }
     render() {
         return(
             <div>
               <h3 className='center'>3. 프로그램 기본 정보</h3>
               <div className="row">
-                <InputProgram cPI={this.props.createProgramInfo.programInfo}/>
+                <InputProgram cPI={this.props.createProgramInfo.programInfo} handleImg={this.handleImg} user_id = {this.props.currentUser}/>
                 <GuideInfoDisabled profileInfo={this.props.profileInfo}/>
 
                 <div className= 'col s8 offset-s2'>
@@ -59,8 +72,8 @@ class CreateDetail extends Component {
 const mapStateToProps = (state) => {
     return {
         createProgramInfo: state.Program.createProgramInfo,
-        profileInfo : state.User.data
-
+        profileInfo : state.User.data,
+        currentUser : state.Login.status.currentUser
     };
 };
 

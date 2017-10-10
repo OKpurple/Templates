@@ -9,11 +9,12 @@ class Program extends Component {
     }
     componentWillMount(){
       console.log(this.props.currentUser);
+      console.log(this.props.cPI);
     }
     handleCreateProgram(){
       this.props.createProgramRequest(this.props.cPI,this.props.currentUser).then(()=>{
+        console.log("promise 마지막");
         if(this.props.cPI.status === "SUCCESS"){
-          console.log(this.props.cPI.programInfo.category)
           this.props.history.push('/');
           alert("등록되었습니다.");
         }else{
@@ -71,7 +72,7 @@ class Program extends Component {
 
             <div className= 'row'>
               <div className= 'col s8 offset-s2'>
-              <NavLink to='/CreatePDetail'><button className="btn marginR waves-effect waves-light red lighten-3">이전</button></NavLink>
+              <NavLink to='/CreateDetail'><button className="btn marginR waves-effect waves-light red lighten-3">이전</button></NavLink>
               <button className="btn marginL waves-effect waves-light red lighten-3" onClick={this.handleCreateProgram}>등록</button>
               </div>
             </div>

@@ -19,5 +19,11 @@ import NewerProgram from './NewerProgram';
 import GuideInfo from './GuideInfo';
 import GuideInfoDisabled from './GuideInfoDisabled';
 
-export { GuideInfoDisabled,GuideInfo,NewerProgram, RecommendProgram,Header,Footer, LoginForm, SearchForm,GuideCardItem,GoogleMap,
+import DetailGoogleMap from './DetailGoogleMap'
+import MyProgramDetailContents from './MyProgramDetailContents'
+
+import Personal_Review from './Personal_Review'
+import UnWrited_Review from './UnWrited_Review'
+
+export { Personal_Review,UnWrited_Review,MyProgramDetailContents,DetailGoogleMap,GuideInfoDisabled,GuideInfo,NewerProgram, RecommendProgram,Header,Footer, LoginForm, SearchForm,GuideCardItem,GoogleMap,
   InputProgram,InputGuide, SideNav, RegisterForm, MyGuide, MyReservedTravel, ProgramDetailContents, ProgramDetailGuideInfo};

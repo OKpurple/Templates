@@ -25,7 +25,7 @@ class RegisterForm extends Component {
       const registerView = (<div className="card-content">
          <div className="row">
              <div className="input-field col s12 username">
-                 <label>Email</label>
+                 <label>login_id</label>
                  <input
                  onChange={this.handleChange}
                  name="loginId"

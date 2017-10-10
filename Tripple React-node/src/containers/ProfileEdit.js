@@ -26,10 +26,10 @@ class ProfileEdit extends Component {
 
     render() {
         return(
-          <div className='col s9'>
-          <div className='row col s12'>
-            <InputGuide onUpdateProfile={this.onUpdateProfile}/>
-          </div>
+          <div>
+            <div className='row'>
+                <InputGuide onUpdateProfile={this.onUpdateProfile}/>
+            </div>
           </div>
         );
     }

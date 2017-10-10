@@ -12,27 +12,33 @@ class Home extends Component {
         super(props);
         this.HandleSearch = this.HandleSearch.bind(this);
     }
+    
 
-
-    componentDidMount(){
-      //키가져오기
-      function getCookie(name) {
-              var value = "; " + document.cookie;
-              console.log(document.cookie);
-              var parts = value.split("; " + name + "=");
-              if (parts.length == 2) return parts.pop().split(";").shift();
-          }
-
-          // get loginData from cookie
-          let loginData = getCookie('key');
-          if(typeof loginData === "undefined") return;
-          console.log('App Load key(login_id) = '+loginData);
-    }
+    // componentDidMount(){
+    //   //키가져오기
+    //   function getCookie(name) {
+    //           var value = "; " + document.cookie;
+    //           console.log(document.cookie);
+    //           var parts = value.split("; " + name + "=");
+    //           if (parts.length == 2) return parts.pop().split(";").shift();
+    //       }
+    //
+    //       // get loginData from cookie
+    //       let loginData = getCookie('key');
+    //       if(typeof loginData === "undefined") return;
+    //       console.log('App Load key(login_id) = '+loginData);
+    // }
 
     HandleSearch(city, searchDate){
-
-      //this.props.history.push(`/SearchResult/`+city+`/`+searchDate);
-      this.props.history.push('/SearchResult');
+      if(city != '' && searchDate != ''){
+        this.props.history.push(`/SearchResult/`+city+`/`+searchDate);
+      }else if(city === '' && searchDate != ''){
+        this.props.history.push('/SearchResult/undefined/'+searchDate);
+      }else if(searchDate === ''){
+        this.props.history.push('/SearchResult/'+city);
+      }else{
+        this.props.history.push('/SearchResult');
+      }
     }
 
     render() {

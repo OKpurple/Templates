@@ -8,7 +8,7 @@ const initialState = {
     data:{
       firstName:"firstName",
       lastName:"lastName",
-      email:"ooo@gamil.com",
+      email:"@tripple.com",
       phone:'01022232223',
       nation:'한국',
       sex:'남자'
@@ -18,12 +18,13 @@ const initialState = {
 export default function Login(state = initialState, action) {
     switch(action.type) {
         case types.GET_PROFILE_SUCCESS:
-          console.log(action.loginId + " login in reducers")
+          console.log(action.data.login_id + " login in reducers")
+          console.log(action.data)
             return update(state, {
                 userProfile: {
                     status: { $set: 'SUCCESS' }
                 },
-                data: {$set:action.data}
+                data: {$merge:action.data}
             });
         case types.GET_PROFILE_FAILURE:
             return update(state, {

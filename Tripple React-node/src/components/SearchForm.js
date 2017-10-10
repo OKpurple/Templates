@@ -8,7 +8,7 @@ class SerachForm extends Component {
         super(props);
         this.state = {
             city : "undefined",
-            searchDate: ""
+            searchDate: "undefined"
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
@@ -22,9 +22,8 @@ class SerachForm extends Component {
     }
 
     handleSearch() {
-      //console.log(document.getElementById('searchPlace').value);
-      //console.log(document.getElementById('searchDate').value);
-      this.props.onSearch(this.state.city,this.state.searchDate);
+
+      this.props.onSearch(document.getElementById('searchPlace').value,this.state.searchDate);
     }
 
 

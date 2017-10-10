@@ -13,18 +13,6 @@ class App extends Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
 
-  componentDidMount(){
-    // function getCookie(name) {
-    //         var value = "; " + document.cookie;
-    //         var parts = value.split("; " + name + "=");
-    //         if (parts.length == 2) return parts.pop().split(";").shift();
-    //     }
-    //
-    //     // get loginData from cookie
-    //     let loginData = getCookie('key');
-    //     if(typeof loginData === "undefined") return;
-    //     console.log('App Load key(login_id) = '+key);
-  }
 
   handleLogout() {
         this.props.logoutRequest().then(
@@ -46,15 +34,15 @@ class App extends Component {
     render(){
 
         let isAuth = false;
-        console.log(this.props.location);
         return (
           <Router>
              <div>
 
+
              {isAuth ? undefined : <Header isLoggedIn={this.props.status.isLoggedIn}
                                                onLogout={this.handleLogout}/>}
 
-                    <div>
+
                       <Switch>
                           <Route exact path="/" component={Home}/>
                           <Route path="/Test" component={Test}/>
@@ -71,14 +59,15 @@ class App extends Component {
                           <Route path="/TravelList" component={TravelList}/>
                           <Route path="/MyPage" component={MyPage}/>
                           <Route path="/WishList" component={WishList}/>
+                          <Route path="/ProgramDetail/:open_program_id" component={ProgramDetail}/>
                           <Route path="/ProgramDetail" component={ProgramDetail}/>
                       </Switch>
-                    </div>
+
                     <Footer/>
 
-             </div>
 
 
+            </div>
          </Router>
 
         );

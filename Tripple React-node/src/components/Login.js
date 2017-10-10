@@ -3,6 +3,7 @@ import { LoginForm } from '../components';
 import { Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginRequest } from '../actions/login';
+import { updateProfileSuccess } from '../actions/user';
 
 class Login extends React.Component {
   constructor(props) {
@@ -23,6 +24,9 @@ class Login extends React.Component {
                       document.cookie = 'key=' + btoa(JSON.stringify(loginData));
 
                       Materialize.toast('Welcome, ' + id + '!', 2000);
+
+
+
 
                       this.props.history.push('/');
                       return true;

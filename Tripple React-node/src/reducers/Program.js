@@ -25,6 +25,10 @@ const initialState = {
       programInfo:{
         category:[]
       }
+    },
+    programDetail:{
+      status:'INIT',
+      data:{}
     }
 };
 
@@ -78,9 +82,22 @@ export default function Program(state, action) {
               data:{$set: action.data}
             }
           });
+
+        case types.RESET_CREATE_PROGRAM:
+          return update(state, {
+            createProgramInfo:{
+              status :{$set:'INIT'},
+              routesData:{$set:[]},
+              meetingInfo: {$set:Object},
+              programInfo:{
+                category:{$set:[]}
+              }
+            }
+        });
         case types.CREATE_ROUTES:
           return update(state, {
             createProgramInfo:{
+              status:{$set:'WAIT'},
               routesData:{$set: action.data}
             }
           });
@@ -93,7 +110,7 @@ export default function Program(state, action) {
         case types.CREATE_PROGRAM_INFO:
           return update(state, {
             createProgramInfo:{
-              programInfo:{$set: action.data}
+              programInfo:{$merge: action.data}
             }
         });
         case types.CREATE_PROGRAM_SUCCESS:
@@ -110,6 +127,19 @@ export default function Program(state, action) {
         case types.CREATE_PROGRAM_FAILURE:
           return update(state, {
             createProgramInfo:{
+              status:{$set: "FAILURE"}
+            }
+        });
+        case types.GET_PROGRAM_DETAIL_SUCCESS:
+          return update(state, {
+            programDetail:{
+              status:{$set: "SUCCESS"},
+              data:{$set: action.data}
+            }
+        });
+        case types.GET_PROGRAM_DETAIL_FAILURE:
+          return update(state, {
+            programDetail:{
               status:{$set: "FAILURE"}
             }
         });

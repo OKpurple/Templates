@@ -28,9 +28,10 @@ export function getProfile(user_id){
     let url = '/api/account/info/'+user_id;
     return axios.get(url)
     .then((res)=>{
+      console.log(res)
       dispatch(getProfileSuccess(res.data.data))
     }).catch((err)=>{
-      dispatch(getProfileFailure);
+      dispatch(getProfileFailure());
     })
   };
 };

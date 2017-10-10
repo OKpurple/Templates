@@ -18,8 +18,9 @@ class InputGuide extends Component {
       email:this.props.profileInfo.email,
       birth:this.props.profileInfo.birth,
       sex:this.props.profileInfo.sex,
-      nation:this.props.profileInfo.nation
-
+      nation:this.props.profileInfo.nation,
+      languages:this.props.profileInfo.languages,
+      profile_text:this.props.profileInfo.profile_text
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -34,11 +35,11 @@ class InputGuide extends Component {
       console.log(this.state);
       this.props.onUpdateProfile(this.state);
     }
-    
+
 
     handleChange(e) {
         let nextState = {};
-        if(e.target.name==='language'){
+        if(e.target.name==='languages'){
           if(e.target.checked){
             nextState[e.target.name] = e.target.id;
             console.log(nextState);
@@ -54,9 +55,22 @@ class InputGuide extends Component {
     }
     render() {
         return(
-          <div className='col s6 offset-s1'>
+          <div className='row'>
+            <div className='col s9'>
+            <div className='row'>
               <h4>가이드 정보</h4>
-                <div className="row">
+            </div>
+
+            <div className="row">
+              <div className="input-field col s12">
+                <input defaultValue={this.state.profile_text} name='profile_text' onChange={this.handleChange} id="profile_text" type="text" className="validate"/>
+                <label className='active' htmlFor="profile_text">한줄 자기 소개!</label>
+              </div>
+            </div>
+
+
+
+                <div className='row'>
                   <div className="input-field col s5">
                     <input defaultValue={this.state.firstName} name='firstName' onChange={this.handleChange} id="first_name" type="text" className="validate"/>
                     <label className='active' htmlFor="first_name">First Name</label>
@@ -89,20 +103,20 @@ class InputGuide extends Component {
                 <div className="row">
                   <div className='col s12'>
                    <span>
-                     <input type="checkbox" name='language' onChange={this.handleChange} id="한국어" defaultChecked="checked" />
+                     <input type="checkbox" name='languages' onChange={this.handleChange} id="한국어"/>
                      <label htmlFor="한국어" >한국어</label>
                    </span>
 
                    <span style={{margin:'1cm'}}>
-                     <input name='language' onChange={this.handleChange} type="checkbox" id="영어" />
+                     <input name='languages' onChange={this.handleChange} type="checkbox" id="영어" />
                      <label htmlFor="영어">영어</label>
                    </span>
                    <span>
-                     <input name='language' onChange={this.handleChange} type="checkbox" id="일본어" />
+                     <input name='languages' onChange={this.handleChange} type="checkbox" id="일본어" />
                      <label htmlFor="일본어">일본어</label>
                    </span>
                    <span style={{margin:'1cm'}}>
-                     <input name='language' onChange={this.handleChange} type="checkbox" id="etc" />
+                     <input name='languages' onChange={this.handleChange} type="checkbox" id="etc" />
                      <label htmlFor="etc">기타</label>
                    </span>
                    </div>
@@ -130,6 +144,9 @@ class InputGuide extends Component {
                   </div>
                 </div>
 
+
+
+
                 <div className='row'>
                   <div className='col s2'>
                   <label>birth</label> </div>
@@ -138,11 +155,13 @@ class InputGuide extends Component {
                   </div>
                 </div>
 
-
-                <div className='row col s12'>
-                  <NavLink to='/MyPage'><button className="btn col s2 offset-s8 marginT waves-effect waves-light green lighten-3">뒤로</button></NavLink>
-                  <button className="btn col s2 marginT waves-effect waves-light green lighten-3" onClick={this.handleUpdate}>저장</button>
+                <div className='row'>
+                  <div className= 'col s1 offset-s11'>
+                    <a className='btn' onClick={this.handleUpdate}>저장</a>
+                  </div>
                 </div>
+
+            </div>
         </div>
         );
     }

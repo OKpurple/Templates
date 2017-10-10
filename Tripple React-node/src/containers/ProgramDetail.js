@@ -1,71 +1,54 @@
 import React, { Component, PropTypes } from 'react';
 import { GoogleMap, ProgramDetailContents, ProgramDetailGuideInfo} from '../components';
 import { Carousel, CarouselItem, CarouselCaption } from 'react-bootstrap';
-
-const propTypes = {
-};
-const defaultProps = {
-};
-
-const carouselInstance = (
-  <Carousel >
-    <Carousel.Item>
-      <img width={620} src="http://lorempixel.com/300/200/nightlife/2"/>
-      <Carousel.Caption>
-        <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-      </Carousel.Caption>
-    </Carousel.Item>
-    <Carousel.Item>
-      <img  width={620} src="http://lorempixel.com/300/200/nightlife/4"/>
-      <Carousel.Caption>
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </Carousel.Caption>
-    </Carousel.Item>
-    <Carousel.Item>
-      <img  width={620} src="http://lorempixel.com/300/200/nightlife/5"/>
-      <Carousel.Caption>
-        <h3>Third slide label</h3>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-      </Carousel.Caption>
-    </Carousel.Item>
-  </Carousel>
-);
-
-
+import {getOpenProgramDetail} from '../actions/openProgram'
+import {connect} from 'react-redux'
 
 class ProgramDetail extends Component {
     constructor(props) {
         super(props);
+        this.state={
+          dataStatus : false
+        }
     }
+
+    componentWillMount(){
+      let opid = this.props.match.params.open_program_id;
+      console.log('programDetail');
+      this.props.getOpenProgramDetail(opid).then(()=>{
+        this.setState({dataStatus:true})
+        console.log("opid ="+opid);
+          console.log(this.props.detailInfo);
+      })
+    }
+
     render() {
         return(
           <div className="container ">
           <div className="row ">
-            <div className="col s1">
-            </div>
 
+          <div className="col s10 offset-s1">
+            {this.state.dataStatus ?  <ProgramDetailContents detailInfo={this.props.detailInfo} opid={this.props.match.params.open_program_id}/> : <div>"loading" </div>}
+            {this.state.dataStatus ? <ProgramDetailGuideInfo detailInfo={this.props.detailInfo}/>: <div>"loading" </div>}
+          </div>
 
-
-
-
-            <div className="col s10 ">
-              <ProgramDetailContents/>
-              <ProgramDetailGuideInfo/>
-            </div>
-
-
-
-
-
-            <div className="col s1">
-            </div>
           </div>
         </div>
         );
     }
 }
-ProgramDetail.propTypes = propTypes;
-ProgramDetail.defaultProps = defaultProps;
-export default ProgramDetail;
+const mapStateToProps = (state) => {
+    return {
+        detailInfo: state.OpenProgram.detailInfo.data, //status.리듀서네임.속성속성,
+        currentUser:state.Login.status.currentUser
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getOpenProgramDetail: (opid) => {
+            return dispatch(getOpenProgramDetail(opid));
+        }
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ProgramDetail);

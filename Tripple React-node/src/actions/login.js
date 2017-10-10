@@ -4,6 +4,9 @@ import {
     AUTH_LOGIN_FAILURE,
     AUTH_LOGOUT
 } from './ActionTypes';
+
+import { updateProfileSuccess } from './user'
+import { getProfile } from './user'
 import axios from 'axios';
 
 /*============================================================================
@@ -62,8 +65,11 @@ export function loginRequest(login_id, password) {
             if(response.data.meta.code === -10){
               console.log("INVALID_REQUEST");
             }else{
-              console.log("loginaction success"+response.data.data.user_id);
-              dispatch(loginSuccess(response.data.data.user_id));
+              var proData = response.data.data;
+              console.log("login action success "+proData.user_id);
+              dispatch(loginSuccess(proData.user_id));
+              dispatch(getProfile(proData.user_id));//프로필불러오기
+              return dispatch(updateProfileSuccess(proData));//이거 왜안될까
             }
         }).catch((error) => {
             // FAILED
@@ -101,8 +107,10 @@ export function registRequest(data) {
             if(response.data.meta.code === -10){
               console.log("INVALID_REQUEST");
             }else{
+
               console.log("regist success"+response.data.data.userId);
               dispatch(loginSuccess(response.data.data.userId));
+              dispatch(getProfile(response.data.data.userId))//프로필불러오기
             }
         }).catch((error) => {
             // FAILED

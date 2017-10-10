@@ -6,9 +6,12 @@ class GuideInfo extends Component {
     }
     render() {
         return(
-          <div className='row col s12'>
-              <div className="col s2 offset-s1">
-                  <img src="https://s3.ap-northeast-2.amazonaws.com/altenull/profile1.jpg" className="responsive-img circle" />
+          <div className='col s12'>
+              <div className="col s2 center">
+                  <img src={this.props.profileInfo.profile_url} className="responsive-img circle" />
+                  <div >
+                    <p>{this.props.profileInfo.profile_text}</p>
+                  </div>
               </div>
               <div className='col s6 offset-s1 z-depth-4'>
               <h3>{this.props.profileInfo.firstName} {this.props.profileInfo.lastName}</h3>
@@ -17,6 +20,7 @@ class GuideInfo extends Component {
               <p>{this.props.profileInfo.sex}</p>
               <p>{this.props.profileInfo.birth}</p>
               <p>{this.props.profileInfo.nation}</p>
+              <p>{this.props.profileInfo.languages}</p>
               </div>
           </div>
         );

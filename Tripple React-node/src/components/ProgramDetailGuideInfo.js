@@ -16,14 +16,18 @@ class ProgramDetailGuideInfo extends Component {
 
         return(
 
-          <div className="col s4 ">
-              <div className="card teal blue-grey darken-3">
+          <div className='col s3 offset-s1'>
+              <div className="card teal blue-grey darken-3 " id="guide_box">
                 <div className="card-content white-text center-align">
-                      <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" />
-
-                              <span className="card-title">홍길동</span>
-                              <p>I am a very simple card. I am good at containing small bits of information.
-                              I am convenient because I require little markup to use effectively.</p>
+                    <div className='row'>
+                      <img src={this.props.detailInfo.userInfo.profile_url} className='circle col s8 offset-s2'/>
+                    </div>
+                    <div className='row'>
+                      <span className="card-title">{this.props.detailInfo.userInfo.firstName}{this.props.detailInfo.userInfo.lastName}</span>
+                      <p>{this.props.detailInfo.userInfo.email}</p>
+                      <p>{this.props.detailInfo.userInfo.birth}</p>
+                      <p>{this.props.detailInfo.userInfo.sex}</p>
+                    </div>
                               <br></br>
 
                               <a href="#" className="white-text">예약하기</a>

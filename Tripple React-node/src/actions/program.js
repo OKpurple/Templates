@@ -10,7 +10,9 @@ import {
   CREATE_MEETING_INFO,
   CREATE_PROGRAM_INFO,
   CREATE_PROGRAM_FAILURE,
-  CREATE_PROGRAM_SUCCESS
+  CREATE_PROGRAM_SUCCESS,
+  GET_PROGRAM_DETAIL_SUCCESS,
+  GET_PROGRAM_DETAIL_FAILURE
 } from './ActionTypes';
 import axios from 'axios';
 
@@ -93,48 +95,51 @@ export function createProgramSuccess(){
 export function createProgramRequest(data,currentUser) {
     return (dispatch) => {
 
-      var title = data.programInfo.title;
-      var startTime = data.programInfo.startTime;
-      var endTime = data.programInfo.endTime;
-      var participant = data.programInfo.participant;
-      var address = data.meetingInfo.address;
-      var lng = data.meetingInfo.lng;
-      var lat = data.meetingInfo.lat;
+      // var title = data.programInfo.title;
+      // var startTime = data.programInfo.startTime;
+      // var participant = data.programInfo.participant;
+      // var address = data.meetingInfo.address;
+      // var lng = data.meetingInfo.lng;
+      // var lat = data.meetingInfo.lat;
+      // var content = '내용이 아직 없음..'
+      // var routes = data.routesData;
+      // var category = data.programInfo.category;
+      // var formData = data.programInfo.formData;
+      // var user_id = currentUser;
+      // var price = data.programInfo.price;
 
-      var content = '내용이 아직 없음..'
-      var routes = data.routesData;
-      var category = data.programInfo.category;
-      // {
-      //   title,
-      //   startTime,
-      //   endTime,
-      //   participant,
-      //   address,
-      //   lng,
-      //   lat,
-      //   content,
-      //   routes,
-      //   user_id,
-      //   category
-      // }
-      var user_id = currentUser;
-      console.log('create action');
-      var body = Object.assign(data.programInfo,{routes:data.routesData},data.meetingInfo,{user_id:user_id});
 
         // API REQUEST
-        return axios.post('/api/programs',body ).then((response) => {
-            // SUCCEED
 
-            if(response.data.meta.code === -10){
-              console.log("INVALID_REQUEST");
-            }else{
-              console.log("create Program success");
-              dispatch(createProgramSuccess());
-            }
-        }).catch((error) => {
-            // FAILED
-            dispatch(createProgramFailure());
-        });
+      return axios.post('api/programs/uploadImg/'+user_id,formData).then((imgRes)=>{
+
+            var program_url = imgRes.data.program_url;
+
+            var body = Object.assign(
+              {program_url:program_url},
+              {routes:data.routesData},
+              data.meetingInfo,
+              data.programInfo,
+              {user_id:user_id}
+            );
+
+            return axios.post('/api/programs',body).then((response) => {
+                    // SUCCEED
+                    if(response.data.meta.code === -10){
+                      console.log("INVALID_REQUEST");
+                    }else{
+                      dispatch(createProgramSuccess());
+                    }
+                }).catch((error) => {
+                    // FAILED
+                    dispatch(createProgramFailure());
+                })
+
+        })
+
+
+
+
     };
 }
 
@@ -154,14 +159,15 @@ export function applyProgramListRequest(user_id){
 }
 
 
-//나의 프로그램
+//내가 만든 프로그램
 export function programListRequest(isInitial, listType, user_id){
   return (dispatch)=>{
     let url = '/api/programs/op/'+user_id;
 
     return axios.get(url)
     .then((response)=>{
-      console.log(url);
+      console.log("여기");
+      console.log(response.data.data);
       dispatch(programsListSuccess(response.data.data,isInitial,listType))
     }).catch((err)=>{
       dispatch(programsListFailure());
@@ -179,5 +185,45 @@ export function applyProgramListSuccess(data){
 export function applyProgramListFailure(){
   return {
     type : APPLY_PROGRAM_LIST_FAILURE
+  }
+}
+
+
+//프로그램 상세정보
+export function getProgramDetailSuccess(data){
+  return {
+    type : GET_PROGRAM_DETAIL_SUCCESS,
+    data : data
+  }
+}
+
+export function getProgramDetailFailure(){
+  return {
+    type : GET_PROGRAM_DETAIL_FAILURE
+  }
+}
+
+
+export function getProgramDetail(pid){
+  return (dispatch)=>{
+    let url ='/api/programs/detail/'+pid
+    console.log("actiion")
+    return axios.get(url).then((result)=>{
+      console.log(result.data.data)
+      if(result.data.meta.code == -10){
+          console.log('실패');
+      }else{
+
+        dispatch(getProgramDetailSuccess(result.data.data));
+      }
+    }).catch((err)=>{
+      dispatch(getProgramDetailFailure());
+    })
+  }
+}
+
+export function resetCreateProgram(){
+  return {
+    type : RESET_CREATE_PROGRAM
   }
 }

@@ -206,7 +206,7 @@ class GoogleMap extends Component {
 
             </div>
 
-            <div className='col s4 '>
+            <div className='col s5 '>
               <table id ='routesTable'>
                 <thead>
                   <tr>
@@ -221,7 +221,7 @@ class GoogleMap extends Component {
               </table>
 
               </div>
-              <div className = 'col s8 offset-s2 '>
+              <div className = 'col s9 offset-s2 '>
                 <button className="btn right marginT waves-effect waves-light red lighten-3" onClick={this.handleNext}>다음</button>
               </div>
             </div>

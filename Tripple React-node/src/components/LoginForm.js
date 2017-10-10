@@ -27,7 +27,6 @@ class LoginForm extends Component {
 
        this.props.onLogin(id, pw).then(
            (success) => {
-             console.log('loginform success');
                if(!success){
                    this.setState({
                        password: ''
@@ -50,7 +49,7 @@ class LoginForm extends Component {
       const loginView = (<div className="card-content">
          <div className="row">
              <div className="input-field col s12 username">
-                 <label>Email</label>
+                 <label>login_id</label>
                  <input
                  name="login_id"
                  type="text"
