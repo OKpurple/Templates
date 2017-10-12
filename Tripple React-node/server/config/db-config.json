@@ -1,7 +1,7 @@
 {
-    "host"                 : "211.253.24.106",
+    "host"                 : "localhost",
     "port"                 : "3306",
-    "user"                 : "tripple",
+    "user"                 : "root",
     "password"             : "tripple00",
     "database"             : "trippleday",
     "multipleStatements"   : "multipleQueryEnable",

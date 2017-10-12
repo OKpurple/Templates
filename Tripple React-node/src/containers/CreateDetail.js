@@ -44,7 +44,7 @@ class CreateDetail extends Component {
       programInfo.price = document.getElementById('price').value;
       programInfo.formData = this.state.formData;
 
-      if(programInfo.title.trim = ''){
+      if(programInfo.title.trim() == ''){
         alert('제목 입력')
       }else{
 

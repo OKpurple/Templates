@@ -5,12 +5,12 @@ import multer from 'multer';
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'server/uploads/programImg/') // cb 콜백함수를 통해 전송된 파일 저장 디렉토리 설정
+    cb(null, 'build/uploads/programImg/') // cb 콜백함수를 통해 전송된 파일 저장 디렉토리 설정
   },
   filename: function (req, file, cb) {
 
     let name = `${req.params.user_id}-${getTimeStamp().replace(' ','')}-${file.originalname}`
-    let url = `http://127.0.0.1:4000/images/programImg/${name}`
+    let url = `http://211.253.24.106/images/programImg/${name}`
     req.params.url = url;
     console.log('url은 멀터에서 '+url);
 
@@ -88,7 +88,7 @@ router.post('/',(req,res)=>{
     let price = req.body.price;
 
     if(img_url==='undefined'){
-      img_url = "http://127.0.0.1:4000/images/programImg/default.png"
+      img_url = "http://211.253.24.106/images/programImg/default.png"
     }
 
     console.log(req.body);
@@ -100,7 +100,7 @@ router.post('/',(req,res)=>{
     dbConnect(res).then((conn)=>{
       query(conn,res,
         `INSERT INTO programs(user_id, title,address,start_time,lat,lng,participant_max,themes,content,img_url,price)
-        VALUES(?,?,?,?,?,?,?,?,?,?,?,?)`,
+        VALUES(?,?,?,?,?,?,?,?,?,?,?)`,
         [
           user_id,
           title,

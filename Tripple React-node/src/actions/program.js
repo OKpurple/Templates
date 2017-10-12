@@ -104,8 +104,8 @@ export function createProgramRequest(data,currentUser) {
       // var content = '내용이 아직 없음..'
       // var routes = data.routesData;
       // var category = data.programInfo.category;
-      // var formData = data.programInfo.formData;
-      // var user_id = currentUser;
+       var formData = data.programInfo.formData;
+       var user_id = currentUser;
       // var price = data.programInfo.price;
 
 
